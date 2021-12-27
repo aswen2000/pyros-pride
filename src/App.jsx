@@ -96,23 +96,24 @@ function App() {
     //   <AmplifySignOut />
     // </div>
     <div className="App">
-    <Header/>
+    
 
     <BrowserRouter>
-      <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/contact' component={Contact} />
-          <Route path='/locations' component={Locations} />
-          <Route path='/products' component={Products} />
-          <Route path='/thunderwear' component={ThunderWear} />
-          <Route path='/admin' component={Admin} />
-      </Switch>
+      <Header/>
+        <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/contact' component={Contact} />
+            <Route path='/locations' component={Locations} />
+            <Route path='/products' component={Products} />
+            <Route path='/thunderwear' component={ThunderWear} />
+            <Route path='/admin' component={Admin} />
+        </Switch>
+      <Footer/>
     </BrowserRouter>
 
 
-    <Footer/>
-    <AmplifySignOut />
+    
 </div>
   );
 }

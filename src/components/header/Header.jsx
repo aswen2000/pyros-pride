@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import facebookLogo from '../../images/f_logo_RGB-Blue_58.png'
 import flashingThunderLogo from '../../images/long-logo.png'
 import { Mailto } from '../index'
+import {Home, About} from '../../pages/index'
 
 
 const Header = () => {
@@ -9,19 +11,19 @@ const Header = () => {
         <div className="header">
             <div className="header-top">
                 <div className="header-top__logo">
-                    <a href="/">
+                    <Link to="/">
                         <img className="header-logo" src={flashingThunderLogo} alt="Flashing Thunder Logo"></img>
-                    </a>
+                    </Link> 
                 </div>
                 <div className="header-top__navbar">
                     <div className="header-top__navigation">
                         <div className="navbar">
-                            <a href="/" className="navbar-item">Home</a>
-                            <a href="/about" className="navbar-item">About</a>
-                            <a href="/products" className="navbar-item">Products</a>
-                            <a href="/thunderwear" className="navbar-item">Thunder Wear</a>
-                            <a href="/locations" className="navbar-item">Locations</a>
-                            <a href="/contact" className="navbar-item">Contact</a>
+                            <Link to="/" className="navbar-item">Home</Link>
+                            <Link to="/about" className="navbar-item">About</Link>
+                            <Link to="/products" className="navbar-item">Products</Link>
+                            <Link to="/thunderwear" className="navbar-item">Thunder Wear</Link>
+                            <Link to="/locations" className="navbar-item">Locations</Link>
+                            <Link to="/contact" className="navbar-item">Contact</Link>
                         </div>
                     </div>
                     <hr className="header-top__seperator" />
@@ -33,7 +35,7 @@ const Header = () => {
                     641-732-5558
                 </div>
                 <div className="header-bottom__email">
-                    {/* <Mailto label="katie@flashingthunder.com" mailto="mailto:katie@flashingthunder.com" /> */}
+                    <Mailto label="katie@flashingthunder.com" mailto="mailto:katie@flashingthunder.com" />
                 </div>
                 <div>
                     <a href="https://www.facebook.com/iowaflashingthunder/" target="_blank" rel="noreferrer">
