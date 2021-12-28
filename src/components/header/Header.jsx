@@ -11,19 +11,19 @@ const Header = () => {
         <div className="header">
             <div className="header-top">
                 <div className="header-top__logo">
-                    <Link to="/">
+                    <Link to="/" replace={true}>
                         <img className="header-logo" src={flashingThunderLogo} alt="Flashing Thunder Logo"></img>
                     </Link> 
                 </div>
                 <div className="header-top__navbar">
                     <div className="header-top__navigation">
                         <div className="navbar">
-                            <Link to="/" className="navbar-item">Home</Link>
-                            <Link to="/about" className="navbar-item">About</Link>
-                            <Link to="/products" className="navbar-item">Products</Link>
-                            <Link to="/thunderwear" className="navbar-item">Thunder Wear</Link>
-                            <Link to="/locations" className="navbar-item">Locations</Link>
-                            <Link to="/contact" className="navbar-item">Contact</Link>
+                            <Link to="/" className="navbar-item" replace={true}>Home</Link>
+                            <Link to="/about" className="navbar-item" replace={true}>About</Link>
+                            <Link to="/products" className="navbar-item" replace={true}>Products</Link>
+                            <Link to="/thunderwear" className="navbar-item" replace={true}>Thunder Wear</Link>
+                            <Link to="/locations" className="navbar-item" replace={true}>Locations</Link>
+                            <Link to="/contact" className="navbar-item" replace={true}>Contact</Link>
                         </div>
                     </div>
                     <hr className="header-top__seperator" />

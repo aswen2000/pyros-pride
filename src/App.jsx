@@ -5,7 +5,7 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listProducts as ListProducts } from './graphql/queries';
 import { createProduct as CreateProductMutation, deleteProduct as DeleteProductMutation } from './graphql/mutations';
 import {Home, About, Contact, Locations, Products, ThunderWear, Admin} from "./pages/index";
-import { BrowserRouter, Route, Redirect, Switch, Link, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch, Link, useHistory, MemoryRouter, BrowserRouterProps } from "react-router-dom";
 import { Header, Footer, Product } from './components/index';
 
 const initialFormState = { product_name: '', product_number: '' }
