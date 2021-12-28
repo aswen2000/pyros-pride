@@ -1,13 +1,31 @@
 import React, { useState, useEffect } from 'react';
-// import './home.css';
-// import facebookLogo from '../../images/f_logo_RGB-Blue_58.png'
-// import flashingThunderLogo from '../../images/long-logo.png'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listProducts as ListProducts } from '../../graphql/queries';
 import { createProduct as CreateProductMutation, deleteProduct as DeleteProductMutation } from '../../graphql/mutations';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const initialFormState = { product_name: '', product_number: '' }
+
+// const theme = createTheme({
+//   components: {
+//     TextField: {
+//       styleOverrides: {
+//         root: {
+//           color: 'white',
+//         },
+//       },
+//     },
+//   },
+// });
+
+const textFieldStyles = {
+    style: {
+    color: "#e5e5e5"
+  }
+}
 
 const Admin = () => {
 
@@ -65,17 +83,35 @@ const Admin = () => {
 
     return (
     <div className="App">
-      <h1>My Products</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'product_name': e.target.value})}
-        placeholder="Product name"
-        value={formData.product_name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'product_number': e.target.value})}
-        placeholder="Product number"
+      <h1 className='products_header'>My Products</h1>
+
+
+      {/* <ThemeProvider theme={theme}>
+        <Button>font-size: 1rem</Button>
+      </ThemeProvider> */}
+
+      {/* <ThemeProvider theme={theme}> */}
+        <TextField
+          // theme={theme}
+          InputProps={textFieldStyles}
+          id="product_name_input" 
+          label="Product Name" 
+          variant="outlined" 
+          onChange={e => setFormData({ ...formData, 'product_name': e.target.value})} 
+          value={formData.product_name}
+        />
+      {/* </ThemeProvider> */}
+
+
+
+      <TextField 
+        id="product_number_input" 
+        label="Product Number" 
+        variant="outlined" 
+        onChange={e => setFormData({ ...formData, 'product_number': e.target.value})} 
         value={formData.product_number}
       />
+
       <input
         type="file"
         onChange={onChange}
