@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import facebookLogo from '../../images/f_logo_RGB-Blue_58.png'
 import flashingThunderLogo from '../../images/long-logo.png'
 import { Mailto } from '../index'
-import {Home, About} from '../../pages/index'
+import Grid from '@mui/material/Grid';
 
 
 const Header = () => {
