@@ -5,6 +5,7 @@
 
 .outer_wrapper {
   padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 .links_wrapper {
@@ -27,6 +28,7 @@
 
 .logo_grid {
   display: inline-block;
+  vertical-align: top;
 }
 
 .link_grid {
