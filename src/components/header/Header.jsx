@@ -12,9 +12,7 @@ const Header = () => {
         <div className="outer_wrapper">
             <Grid xs={12} sm={12} md={5} lg={5} xl={5} className="logo_grid">
                 <Link to="/" replace={true}>
-                    <div className="wrap">
-                        <img className="header_logo" src={flashingThunderLogo} alt="Flashing Thunder Logo"></img>
-                    </div>
+                    <img className="header_logo" src={flashingThunderLogo} alt="Flashing Thunder Logo"></img>
                 </Link> 
             </Grid>
             <Grid xs={12} sm={12} md={7} lg={7} xl={7} className="link_grid">
@@ -24,6 +22,23 @@ const Header = () => {
                 <Link to="/thunderwear" className="navbar_item" replace={true}>Thunder Wear</Link>
                 <Link to="/locations" className="navbar_item" replace={true}>Locations</Link>
                 <Link to="/contact" className="navbar_item" replace={true}>Contact</Link>
+
+                <hr className="header_divider" />
+
+                <div className="header_contact_wrapper">
+                    <div className="header_phone">
+                        641-732-5558
+                    </div>
+
+                    <div className="header_mailto">
+                        <Mailto label="katie@flashingthunder.com" mailto="mailto:katie@flashingthunder.com" />
+                    </div>
+
+                    <a href="https://www.facebook.com/iowaflashingthunder/" target="_blank" rel="noreferrer">
+                        <img className="facebook_logo" src={facebookLogo} alt="Facebook Logo"/>
+                    </a>
+                </div>
+
             </Grid>
         </div>
     );
