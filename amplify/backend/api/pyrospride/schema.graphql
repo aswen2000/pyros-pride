@@ -6,7 +6,7 @@ type Product @model {
   id: ID!
   product_number: String! #maybe should'nt be required?
   product_name: String
-  packing_num: Int
+  packing_num: Int #can be removed
   box_per_case: Int
   product_per_box: Int
   tags: String
