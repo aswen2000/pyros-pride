@@ -4,11 +4,13 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type Product @model {
   id: ID!
-  product_number: String! #maybe should'nt be required?
+  product_number: String! #maybe shouldn't be required?
   product_name: String
-  packing_num: Int #can be removed
   box_per_case: Int
   product_per_box: Int
+  pieces_per_product: Int
+  category: String
+  available: Boolean
   tags: String
   description: String
   image: String
