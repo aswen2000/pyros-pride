@@ -10,9 +10,11 @@ export const createProduct = /* GraphQL */ `
       id
       product_number
       product_name
-      packing_num
       box_per_case
       product_per_box
+      pieces_per_product
+      category
+      available
       tags
       description
       image
@@ -31,9 +33,11 @@ export const updateProduct = /* GraphQL */ `
       id
       product_number
       product_name
-      packing_num
       box_per_case
       product_per_box
+      pieces_per_product
+      category
+      available
       tags
       description
       image
@@ -52,9 +56,11 @@ export const deleteProduct = /* GraphQL */ `
       id
       product_number
       product_name
-      packing_num
       box_per_case
       product_per_box
+      pieces_per_product
+      category
+      available
       tags
       description
       image
