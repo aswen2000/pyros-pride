@@ -1,19 +1,45 @@
+import React, { useState, useEffect } from 'react';
+import { API, Storage } from 'aws-amplify';
 import Product from "../../components/product/Product";
-// import facebookLogo from '../../images/f_logo_RGB-Blue_58.png'
-import PPSh from "../../images/PPSh-41_from_soviet.jpg"
+import "./Products.css"
+import { ImageList, ImageListItem } from '@mui/material';
+import { listProducts } from '../../graphql/queries';
 
 const Products = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+    
+    async function fetchProducts() {
+        const apiData = await API.graphql({ query: listProducts });
+        console.log(apiData);
+        const productsFromAPI = apiData.data.listProducts.items;
+        await Promise.all(productsFromAPI.map(async product => {
+            if (product.image) {
+            const image = await Storage.get(product.image);
+            product.image = image;
+            }
+            return product;
+        }))
+        setProducts(apiData.data.listProducts.items);
+    }
 
     return (
-        <div>
-            <div className="product_card">
-                <Product
-                    product_name={"Arbitrary Example"}
-                    product_number={"PP-SH41"} 
-                    description={"This is an example of a description, it has great pops and bangs really quickly"}
-                    image={PPSh}
-                    link={"FAIyQ5yqVu8"}/>
-            </div>
+        <div className="card_container">
+            <ImageList variant="masonry" cols={2} gap={8}>
+            {products.map((item) => (
+                <ImageListItem key={item.img}>
+                    <Product
+                        product_name={item.product_name}
+                        product_number={item.product_number} 
+                        description={item.description}
+                        image={item.image}
+                        link={item.link}/>
+                </ImageListItem>
+            ))}
+            </ImageList>
         </div>
 
     );

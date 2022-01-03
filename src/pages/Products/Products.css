@@ -1,3 +1,9 @@
 .product_card {
     display: inline-block;
 }
+
+.card_container {
+    width: 64%;
+    margin-left: auto;
+    margin-right: auto;
+}

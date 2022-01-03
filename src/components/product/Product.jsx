@@ -16,8 +16,9 @@ const Product = ({product_name, product_number, description, image, link}) => {
     // };
 
     return (
-        <Card sx={{ maxWidth: 550 }}>
+        <Card sx={{ maxWidth: 475 }}>
             <CardMedia
+            sx={{ maxHeight: 400, maxWidth: "auto" }}
             component="img"
             image={image}
             alt="display img"
@@ -26,10 +27,10 @@ const Product = ({product_name, product_number, description, image, link}) => {
                 <Typography variant="h5" component="div">
                     {product_name}
                 </Typography>
-                <Typography gutterBottom variant="h7" component="div">
+                <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
                     {product_number}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
                     {/* <YouTube videoId={link} opts={opts}/> */}
                     {description}
                 </Typography>
