@@ -4,16 +4,17 @@ import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listProducts as ListProducts } from '../../graphql/queries';
 import { createProduct as CreateProductMutation, deleteProduct as DeleteProductMutation } from '../../graphql/mutations';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { Checkbox, TextField, Button } from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
 
 const initialFormState = { 
   product_number: '',
   product_name: '',
-  packing_num: '',
   box_per_case: '',
   product_per_box: '',
+  pieces_per_product: '',
+  category: '',
+  available: '',
   tags: '',
   description: '',
   image: '',
@@ -108,7 +109,8 @@ const Admin = () => {
         InputLabelProps={textFieldStyles}
         id="product_name_input" 
         label="Product Name" 
-        variant="outlined" 
+        variant="outlined"
+        sx={{marginRight: 1, marginLeft: 1}}
         onChange={e => setFormData({ ...formData, 'product_name': e.target.value})} 
         value={formData.product_name}
       />
@@ -119,20 +121,10 @@ const Admin = () => {
         InputLabelProps={textFieldStyles}
         id="product_number_input" 
         label="Product Number" 
-        variant="outlined" 
+        variant="outlined"
+        sx={{marginRight: 1, marginLeft: 1}}
         onChange={e => setFormData({ ...formData, 'product_number': e.target.value})} 
         value={formData.product_number}
-      />
-
-      <TextField
-        className={classes.root}
-        InputProps={textFieldStyles}
-        InputLabelProps={textFieldStyles}
-        id="packing_num" 
-        label="Packing Number" 
-        variant="outlined" 
-        onChange={e => setFormData({ ...formData, 'packing_num': e.target.value})} 
-        value={formData.packing_num}
       />
     </div>
 
@@ -143,7 +135,8 @@ const Admin = () => {
         InputLabelProps={textFieldStyles}
         id="box_per_case" 
         label="Boxes Per Case" 
-        variant="outlined" 
+        variant="outlined"
+        sx={{marginRight: 1}}
         onChange={e => setFormData({ ...formData, 'box_per_case': e.target.value})} 
         value={formData.box_per_case}
       />
@@ -153,9 +146,27 @@ const Admin = () => {
         InputLabelProps={textFieldStyles}
         id="product_per_box" 
         label="Product Per Box" 
-        variant="outlined" 
+        variant="outlined"
+        sx={{marginRight: 1, marginLeft: 1}}
         onChange={e => setFormData({ ...formData, 'product_per_box': e.target.value})} 
         value={formData.product_per_box}
+      />
+      <TextField
+        className={classes.root}
+        InputProps={textFieldStyles}
+        InputLabelProps={textFieldStyles}
+        id="pieces_per_product" 
+        label="Pieces Per Product" 
+        variant="outlined"
+        sx={{marginLeft: 1}}
+        onChange={e => setFormData({ ...formData, 'pieces_per_product': e.target.value})} 
+        value={formData.pieces_per_product}
+      />
+    </div>
+
+    <div className='input_row'>
+      <Checkbox
+        className={classes.root}
       />
     </div>
 
