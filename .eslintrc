@@ -1,0 +1,29 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true,
+        "jest": true
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "extends": ["eslint:recommended", "airbnb", "airbnb/hooks", "plugin:prettier/recommended", "prettier/react"],
+    "rules": {
+        "quotes": ["error", "double"],
+        "arrow-body-style": "off",
+        "no-plusplus": "off",
+        "no-continue": "off",
+        "no-use-before-define": "off",
+        "no-underscore-dangle": "off",
+        "prettier/prettier": "error",
+        "no-param-reassign": 0
+    },
+    "reportUnusedDisableDirectives": true
+}
