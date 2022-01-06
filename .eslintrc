@@ -22,8 +22,9 @@
         "no-continue": "off",
         "no-use-before-define": "off",
         "no-underscore-dangle": "off",
-        "prettier/prettier": "error",
-        "no-param-reassign": 0
+        "prettier/prettier": "warn",
+        "no-param-reassign": 0,
+        "no-unused-vars": "warn"
     },
     "reportUnusedDisableDirectives": true
 }
