@@ -98,7 +98,12 @@ const Admin = () => {
 
         setFormData(initialFormState);
 
-        await API.graphql({ query: CreateProductMutation, variables: { input: formData } });
+        try {
+            await API.graphql({ query: CreateProductMutation, variables: { input: formData } });
+        } catch (error) {
+            console.log(error);
+        }
+
         if (formData.image) {
             const image = await Storage.get(formData.image);
             formData.image = image;
