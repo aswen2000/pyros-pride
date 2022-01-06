@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/alt-text */
@@ -5,13 +6,23 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { Checkbox, TextField, Button } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+import { Checkbox, TextField, Button, Typography } from "@mui/material";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
     createProduct as CreateProductMutation,
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
+
+const CustomColorCheckbox = withStyles({
+    root: {
+        color: "#e5e5e5",
+        "&$checked": {
+            color: "#2196f3",
+        },
+    },
+    checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
 const initialFormState = {
     product_number: "",
@@ -20,7 +31,7 @@ const initialFormState = {
     product_per_box: "",
     pieces_per_product: "",
     category: "",
-    available: "",
+    available: false,
     tags: "",
     description: "",
     image: "",
@@ -169,7 +180,28 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <Checkbox className={classes.root} />
+                <Typography className="checkbox_label">Currently Available</Typography>
+                <CustomColorCheckbox
+                    className={classes.root}
+                    onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
+                    value={formData.available}
+                    id="pieces_per_product"
+                    label="Pieces Per Product"
+                />
+            </div>
+
+            <div className="input_row">
+                <TextField
+                    className={classes.root}
+                    InputProps={textFieldStyles}
+                    InputLabelProps={textFieldStyles}
+                    fullWidth
+                    id="category"
+                    label="Category"
+                    variant="outlined"
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    value={formData.category}
+                />
             </div>
 
             <div className="input_row">
