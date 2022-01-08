@@ -1,21 +1,22 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@mui/material";
 import React from "react";
-import YouTube from "react-youtube";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import styles from "./Product.css";
-
-const Product = ({ product_name, product_number, description, image, link }) => {
-    // const opts = {
-    //     height: '270',
-    //     width: '480'
-    // };
+const AdminProduct = ({ product }) => {
+    const {
+        product_number,
+        product_name,
+        box_per_case,
+        product_per_box,
+        pieces_per_product,
+        category,
+        available,
+        tags,
+        description,
+        image,
+        video_link,
+    } = product;
 
     return (
         <Card sx={{ maxWidth: 475 }}>
@@ -36,4 +37,4 @@ const Product = ({ product_name, product_number, description, image, link }) => 
     );
 };
 
-export default Product;
+export default AdminProduct;

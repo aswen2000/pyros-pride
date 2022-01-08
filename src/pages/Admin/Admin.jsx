@@ -13,6 +13,7 @@ import {
     createProduct as CreateProductMutation,
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
+import { AdminProduct } from "../../components";
 
 const CustomColorCheckbox = withStyles({
     root: {
@@ -262,12 +263,7 @@ const Admin = () => {
             </div>
 
             {products.map((product) => (
-                <div key={product.id || product.product_name}>
-                    <h2>{product.product_name}</h2>
-                    <p>{product.product_number}</p>
-                    <button onClick={() => deleteProduct(product)}>Delete product</button>
-                    {product.image && <img src={product.image} style={{ width: 400 }} />}
-                </div>
+                <AdminProduct product={product} />
             ))}
             <AmplifySignOut />
         </div>
