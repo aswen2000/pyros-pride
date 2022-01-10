@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable prefer-template */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/button-has-type */
@@ -64,6 +66,7 @@ const Admin = () => {
 
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         fetchProducts();
@@ -114,15 +117,20 @@ const Admin = () => {
     }
 
     async function deleteProduct({ id }) {
+        console.log("trying to delete: " + id);
         const newProductsArray = products.filter((product) => product.id !== id);
         setProducts(newProductsArray);
         await API.graphql({ query: DeleteProductMutation, variables: { input: { id } } });
     }
 
+    const handleAdd = () => {
+        console.log("handling");
+        setCount(count + 1);
+    };
+
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
-
             <div className="input_row">
                 <TextField
                     className={classes.root}
@@ -262,8 +270,10 @@ const Admin = () => {
                 </Button>
             </div>
 
+            {count}
+
             {products.map((product) => (
-                <AdminProduct product={product} />
+                <AdminProduct handleAdd={handleAdd} />
             ))}
             <AmplifySignOut />
         </div>
