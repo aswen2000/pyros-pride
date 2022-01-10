@@ -4,7 +4,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@
 import React, { useEffect } from "react";
 import "./AdminProduct.css";
 
-const AdminProduct = ({ handleAdd, product }) => {
+const AdminProduct = ({ handleDelete, product }) => {
     const {
         id,
         product_number,
@@ -27,8 +27,8 @@ const AdminProduct = ({ handleAdd, product }) => {
 
     return (
         <Card className="card" sx={{ maxWidth: 475 }}>
-            {/* <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" /> */}
-            {/* <CardContent>
+            <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+            <CardContent>
                 <Typography variant="h5" component="div">
                     {product_name}
                 </Typography>
@@ -38,8 +38,8 @@ const AdminProduct = ({ handleAdd, product }) => {
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
                     {description}
                 </Typography>
-            </CardContent> */}
-            <Button onClick={() => handleAdd(id)}>Add btn</Button>
+            </CardContent>
+            <Button onClick={() => handleDelete(id)}>delete btn</Button>
         </Card>
     );
 };

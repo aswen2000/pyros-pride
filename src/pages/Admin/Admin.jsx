@@ -66,7 +66,6 @@ const Admin = () => {
 
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
-    const [count, setCount] = useState(0);
 
     useEffect(() => {
         fetchProducts();
@@ -123,9 +122,9 @@ const Admin = () => {
         await API.graphql({ query: DeleteProductMutation, variables: { input: { id } } });
     }
 
-    const handleAdd = (id) => {
+    const handleDelete = (id) => {
         console.log("handling: " + id);
-        setCount(count + 1);
+        deleteProduct({id});
     };
 
     return (
@@ -270,10 +269,8 @@ const Admin = () => {
                 </Button>
             </div>
 
-            {count}
-
             {products.map((product) => (
-                <AdminProduct handleAdd={handleAdd} product={product} />
+                <AdminProduct handleDelete={handleDelete} product={product} />
             ))}
             <AmplifySignOut />
         </div>
