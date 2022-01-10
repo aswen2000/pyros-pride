@@ -1,6 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@mui/material";
+import {
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Button,
+    Typography,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useEffect } from "react";
 import "./AdminProduct.css";
 
@@ -20,24 +31,21 @@ const AdminProduct = ({ handleDelete, product }) => {
         video_link,
     } = product;
 
-    useEffect(() => {
-        console.log(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <Card className="card" sx={{ maxWidth: 475 }}>
             <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
             <CardContent>
-                <Typography variant="h5" component="div">
-                    {product_name}
-                </Typography>
-                <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
-                    {product_number}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-                    {description}
-                </Typography>
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography>{product_name}</Typography>
+                        <Typography sx={{ color: "text.secondary" }}>{product_number}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography variant="body2" color="text.secondary">
+                            {description}
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
             </CardContent>
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
         </Card>

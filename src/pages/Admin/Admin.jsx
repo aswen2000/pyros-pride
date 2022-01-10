@@ -116,15 +116,13 @@ const Admin = () => {
     }
 
     async function deleteProduct({ id }) {
-        console.log("trying to delete: " + id);
         const newProductsArray = products.filter((product) => product.id !== id);
         setProducts(newProductsArray);
         await API.graphql({ query: DeleteProductMutation, variables: { input: { id } } });
     }
 
     const handleDelete = (id) => {
-        console.log("handling: " + id);
-        deleteProduct({id});
+        deleteProduct({ id });
     };
 
     return (
