@@ -123,8 +123,8 @@ const Admin = () => {
         await API.graphql({ query: DeleteProductMutation, variables: { input: { id } } });
     }
 
-    const handleAdd = () => {
-        console.log("handling");
+    const handleAdd = (id) => {
+        console.log("handling: " + id);
         setCount(count + 1);
     };
 
@@ -273,7 +273,7 @@ const Admin = () => {
             {count}
 
             {products.map((product) => (
-                <AdminProduct handleAdd={handleAdd} />
+                <AdminProduct handleAdd={handleAdd} product={product} />
             ))}
             <AmplifySignOut />
         </div>

@@ -4,25 +4,26 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@
 import React, { useEffect } from "react";
 import "./AdminProduct.css";
 
-const AdminProduct = ({ handleAdd }) => {
-    // const {
-    //     product_number,
-    //     product_name,
-    //     box_per_case,
-    //     product_per_box,
-    //     pieces_per_product,
-    //     category,
-    //     available,
-    //     tags,
-    //     description,
-    //     image,
-    //     video_link,
-    // } = product;
+const AdminProduct = ({ handleAdd, product }) => {
+    const {
+        id,
+        product_number,
+        product_name,
+        box_per_case,
+        product_per_box,
+        pieces_per_product,
+        category,
+        available,
+        tags,
+        description,
+        image,
+        video_link,
+    } = product;
 
-    // useEffect(() => {
-    //     func(product_name);
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    useEffect(() => {
+        console.log(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <Card className="card" sx={{ maxWidth: 475 }}>
@@ -38,7 +39,7 @@ const AdminProduct = ({ handleAdd }) => {
                     {description}
                 </Typography>
             </CardContent> */}
-            <Button onClick={handleAdd}>Add btn</Button>
+            <Button onClick={() => handleAdd(id)}>Add btn</Button>
         </Card>
     );
 };
