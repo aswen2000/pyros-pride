@@ -8,3 +8,20 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.card_container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.delete_btn {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

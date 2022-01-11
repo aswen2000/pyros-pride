@@ -11,7 +11,7 @@ import {
     AccordionSummary,
     AccordionDetails,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { ExpandMore, Delete } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
 import "./AdminProduct.css";
@@ -41,10 +41,13 @@ const AdminProduct = ({ handleDelete, product }) => {
 
     return (
         <Card className="card" sx={{ maxWidth: 475 }}>
-            <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+            <div className="card_container">
+                <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+                <Delete className="delete_btn" />
+            </div>
 
             <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <AccordionSummary expandIcon={<ExpandMore />}>
                     <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
                         <Typography>{product_name}</Typography>
                         <Typography sx={{ color: "text.secondary", pb: 0 }}>{product_number}</Typography>
