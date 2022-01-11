@@ -10,9 +10,9 @@ import {
     AccordionSummary,
     AccordionDetails,
 } from "@mui/material";
-import { ExpandMore, Delete, MoreVert } from "@mui/icons-material";
+import { ExpandMore, Delete, MoreVert, Edit } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import React from "react";
+import React, { useState } from "react";
 import "./AdminProduct.css";
 
 const AdminProduct = ({ handleDelete, product }) => {
@@ -31,6 +31,9 @@ const AdminProduct = ({ handleDelete, product }) => {
         video_link,
     } = product;
 
+    const [editMode, setEditMode] = useState(false);
+    const [productData, setProductData] = useState(product);
+
     const CardContentNoPadding = styled(CardContent)(`
         padding: 0;
         &:last-child {
@@ -38,12 +41,16 @@ const AdminProduct = ({ handleDelete, product }) => {
         }
     `);
 
+    const handleEdit = () => {
+        console.log(id)
+    }
+
     return (
         <Card className="card" sx={{ maxWidth: 475 }}>
             <div className="card_container">
                 <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
-                {/* <MoreVert className="delete_btn" /> */}
                 <Delete className="delete_btn" onClick={() => handleDelete(id)} />
+                <Edit className="edit_btn" onClick={handleEdit} />
             </div>
 
             <Accordion>

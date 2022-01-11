@@ -17,8 +17,19 @@
 
 .delete_btn {
     position: absolute;
-    top: 2%;
     right: 1%;
+    top: 2%;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.edit_btn {
+    position: absolute;
+    right: 1%;
+    top: 14%;
     background-color: #555;
     color: white;
     border: none;
