@@ -4,12 +4,7 @@ import React from "react";
 // import flashingThunderLogo from '../../images/long-logo.png'
 
 const About = () => {
-
-    return (
-        <div className="about">
-            This is about
-        </div>
-    );
-}
+    return <div className="about">This is about</div>;
+};
 
 export default About;

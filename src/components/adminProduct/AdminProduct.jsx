@@ -2,7 +2,6 @@
 /* eslint-disable camelcase */
 import {
     Card,
-    CardActions,
     CardContent,
     CardMedia,
     Button,
@@ -11,9 +10,9 @@ import {
     AccordionSummary,
     AccordionDetails,
 } from "@mui/material";
-import { ExpandMore, Delete } from "@mui/icons-material";
+import { ExpandMore, Delete, MoreVert } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import React, { useEffect } from "react";
+import React from "react";
 import "./AdminProduct.css";
 
 const AdminProduct = ({ handleDelete, product }) => {
@@ -43,7 +42,8 @@ const AdminProduct = ({ handleDelete, product }) => {
         <Card className="card" sx={{ maxWidth: 475 }}>
             <div className="card_container">
                 <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
-                <Delete className="delete_btn" />
+                {/* <MoreVert className="delete_btn" /> */}
+                <Delete className="delete_btn" onClick={() => handleDelete(id)} />
             </div>
 
             <Accordion>

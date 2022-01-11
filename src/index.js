@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import Amplify from 'aws-amplify';
-import config from './aws-exports';
-import { BrowserRouter } from 'react-router-dom';
+/* eslint-disable react/jsx-filename-extension */
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Amplify from "aws-amplify";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import config from "./aws-exports";
+
 Amplify.configure(config);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
