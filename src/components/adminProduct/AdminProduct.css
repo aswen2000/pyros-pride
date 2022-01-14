@@ -43,9 +43,13 @@
     margin: 3px;
 }
 
-.media {
-    /* margin: 3px; */
+.media_input_container {
     display: inline-block;
     vertical-align: middle;
-    /* height: 100%; */
+    width: 50%;
+}
+
+.edit_file_input {
+    /* margin-left: 50%; */
+    color: #000000;
 }

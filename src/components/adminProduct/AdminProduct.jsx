@@ -9,6 +9,7 @@ import {
     Accordion,
     AccordionSummary,
     AccordionDetails,
+    TextField,
 } from "@mui/material";
 import { ExpandMore, Delete, MoreVert, Edit } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
@@ -32,6 +33,10 @@ const AdminProduct = ({ handleDelete, product }) => {
         video_link,
     } = product;
 
+    const [productData, setProductData] = useState(product);
+
+    // console.log(image);
+
     const [editMode, setEditMode] = useState(true);
     // const [productData, setProductData] = useState(product);
 
@@ -54,12 +59,36 @@ const AdminProduct = ({ handleDelete, product }) => {
                     <CardMedia
                         sx={{ maxHeight: "auto", maxWidth: 360 }}
                         component="img"
-                        image={image}
+                        image={productData.image}
                         alt="display img"
                     />
                 </div>
                 <div className="media_container">
                     <YouTube videoId={video_link} opts={opts} />
+                </div>
+            </div>
+
+            <div>
+                <div className="media_input_container">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        className="edit_file_input"
+                        onChange={(e) => 
+                            setProductData({ ...productData, image: URL.createObjectURL(e.target.files[0]) })
+                        }
+                    />
+                </div>
+                <div className="media_input_container">
+                    <TextField
+                        defaultValue={video_link}
+                        placeholder="Link"
+                        id="link"
+                        variant="outlined"
+                        sx={{ mb: 1 }}
+                        // onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
+                        // value={formData.product_per_box}
+                    />
                 </div>
             </div>
 
@@ -83,7 +112,6 @@ const AdminProduct = ({ handleDelete, product }) => {
             <div className="card_container">
                 <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
                 <Delete className="delete_btn" onClick={() => handleDelete(id)} />
-                {/* <Edit className="edit_btn" onClick={() => setEditMode(true)} /> */}
             </div>
 
             <Accordion>
@@ -99,7 +127,6 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            {/* <Button onClick={() => handleDelete(id)}>delete btn</Button> */}
         </Card>
     );
 };
