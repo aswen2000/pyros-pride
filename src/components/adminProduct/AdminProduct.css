@@ -36,3 +36,16 @@
     border-radius: 7px;
     cursor: pointer;
 }
+
+.media_container {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 3px;
+}
+
+.media {
+    /* margin: 3px; */
+    display: inline-block;
+    vertical-align: middle;
+    /* height: 100%; */
+}
