@@ -30,8 +30,8 @@ const Products = () => {
     }
 
     return (
-        <div className="card_container">
-            <ImageList variant="masonry" cols={2} gap={8}>
+        <div>
+            <ImageList className="image_list" sx={{ width: 0.65 }} variant="masonry" cols={2} gap={8}>
                 {products.map((item) => (
                     <ImageListItem key={item.img}>
                         <Product
