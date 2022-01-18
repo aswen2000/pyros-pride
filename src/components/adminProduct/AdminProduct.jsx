@@ -14,10 +14,13 @@ import {
     Grid,
     Checkbox,
     Select,
-    MenuItem
+    MenuItem,
+    OutlinedInput,
+    Box,
+    Chip,
 } from "@mui/material";
-import { ExpandMore, Delete, MoreVert, Edit } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
+import { ExpandMore, Edit } from "@mui/icons-material";
+import { styled, useTheme } from "@mui/material/styles";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
@@ -47,6 +50,36 @@ const useStyles = makeStyles({
     },
 });
 
+function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+            personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+    };
+}
+
+const CardContentNoPadding = styled(CardContent)(`
+padding: 0;
+&:last-child {
+padding-bottom: 0;
+}
+`);
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+
+const opts = {
+    height: "202",
+    width: "360",
+};
+
 const AdminProduct = ({ handleDelete, product }) => {
     const {
         id,
@@ -57,33 +90,44 @@ const AdminProduct = ({ handleDelete, product }) => {
         pieces_per_product,
         category,
         available,
-        tags,
+        // tags,
         description,
         image,
         video_link,
     } = product;
 
     const classes = useStyles();
+    const theme = useTheme();
 
     const [productData, setProductData] = useState(product);
     const [editMode, setEditMode] = useState(false);
-
-    const CardContentNoPadding = styled(CardContent)(`
-        padding: 0;
-        &:last-child {
-        padding-bottom: 0;
-        }
-    `);
+    const [selectedTags, setSelectedTags] = useState([]);
 
     const handleCancel = () => {
         setProductData(product);
         setEditMode(false);
+        setSelectedTags([]);
     };
 
-    const opts = {
-        height: "202",
-        width: "360",
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
+
+    const tags = [
+        "Oliver Hansen",
+        "Van Henry",
+        "April Tucker",
+        "Ralph Hubbard",
+        "Omar Alexander",
+        "Carlos Abbott",
+        "Miriam Wagner",
+        "Bradley Wilkerson",
+        "Virginia Andrews",
+        "Kelly Snyder",
+    ];
 
     return editMode ? (
         <Card className="card" sx={{ width: 0.5 }}>
@@ -225,21 +269,32 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
-            {/* <Grid container alignItems="center" justifyContent="center">
+            <Grid container alignItems="center" justifyContent="center">
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <Select
-                        autoWidth
-                        label="Age"
+                        labelId="tag-select-label"
+                        id="tag-select"
+                        multiple
+                        value={selectedTags}
+                        onChange={handleChange}
+                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                                {selected.map((value) => (
+                                    <Chip key={value} label={value} />
+                                ))}
+                            </Box>
+                        )}
+                        MenuProps={MenuProps}
                     >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Twenty</MenuItem>
-                        <MenuItem value={21}>Twenty one</MenuItem>
-                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                        {tags.map((name) => (
+                            <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                                {name}
+                            </MenuItem>
+                        ))}
                     </Select>
                 </Grid>
-            </Grid> */}
+            </Grid>
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
             <Button onClick={handleCancel}>cancel</Button>
