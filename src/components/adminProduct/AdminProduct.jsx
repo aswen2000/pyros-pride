@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import {
     Card,
-    CardContent,
     CardMedia,
     Button,
     Typography,
@@ -12,7 +10,6 @@ import {
     AccordionDetails,
     TextField,
     Grid,
-    Checkbox,
     Select,
     MenuItem,
     OutlinedInput,
@@ -20,65 +17,18 @@ import {
     Chip,
 } from "@mui/material";
 import { ExpandMore, Edit } from "@mui/icons-material";
-import { styled, useTheme } from "@mui/material/styles";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import {
+    videoSizeOpts,
+    MenuProps,
+    CardContentNoPadding,
+    getStyles,
+    useStyles,
+    CustomColorCheckbox,
+} from "./adminProductUtils";
 import "./AdminProduct.css";
-
-const CustomColorCheckbox = withStyles({
-    root: {
-        color: "#000000",
-        "&$checked": {
-            color: "#2196f3",
-        },
-    },
-    checked: {},
-})((props) => <Checkbox color="default" {...props} />);
-
-const useStyles = makeStyles({
-    root: {
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-    },
-});
-
-function getStyles(name, personName, theme) {
-    return {
-        fontWeight:
-            personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
-    };
-}
-
-const CardContentNoPadding = styled(CardContent)(`
-padding: 0;
-&:last-child {
-padding-bottom: 0;
-}
-`);
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-
-const opts = {
-    height: "202",
-    width: "360",
-};
 
 const AdminProduct = ({ handleDelete, product }) => {
     const {
@@ -88,7 +38,7 @@ const AdminProduct = ({ handleDelete, product }) => {
         box_per_case,
         product_per_box,
         pieces_per_product,
-        category,
+        // category,
         available,
         // tags,
         description,
@@ -101,7 +51,7 @@ const AdminProduct = ({ handleDelete, product }) => {
 
     const [productData, setProductData] = useState(product);
     const [editMode, setEditMode] = useState(false);
-    const [selectedTags, setSelectedTags] = useState([]);
+    const [selectedTags, setSelectedTags] = useState([]); // TODO: should be included within productData
 
     const handleCancel = () => {
         setProductData(product);
@@ -141,7 +91,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                     />
                 </div>
                 <div className="media_container">
-                    <YouTube videoId={video_link} opts={opts} />
+                    <YouTube videoId={video_link} opts={videoSizeOpts} />
                 </div>
             </div>
 
