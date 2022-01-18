@@ -2,6 +2,8 @@
 
 https://master.d320kd5wom0ulj.amplifyapp.com/
 
+https://trello.com/b/FNYPvtwu/react
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
