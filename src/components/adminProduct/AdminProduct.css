@@ -50,6 +50,10 @@
 }
 
 .edit_file_input {
-    /* margin-left: 50%; */
     color: #000000;
+}
+
+.available_label {
+    color: #000000;
+    display: inline-block;
 }
