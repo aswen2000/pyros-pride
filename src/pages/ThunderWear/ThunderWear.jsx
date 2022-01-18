@@ -1,5 +1,6 @@
-const ThunderWear = () => {
+import React from "react";
 
+const ThunderWear = () => {
     return (
         <div className="thunderwear">
             This is ThunderWear

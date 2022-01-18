@@ -13,6 +13,8 @@ import {
     TextField,
     Grid,
     Checkbox,
+    Select,
+    MenuItem
 } from "@mui/material";
 import { ExpandMore, Delete, MoreVert, Edit } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
@@ -76,7 +78,7 @@ const AdminProduct = ({ handleDelete, product }) => {
     const handleCancel = () => {
         setProductData(product);
         setEditMode(false);
-    }
+    };
 
     const opts = {
         height: "202",
@@ -223,6 +225,21 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
+            {/* <Grid container alignItems="center" justifyContent="center">
+                <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                    <Select
+                        autoWidth
+                        label="Age"
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Twenty</MenuItem>
+                        <MenuItem value={21}>Twenty one</MenuItem>
+                        <MenuItem value={22}>Twenty one and a half</MenuItem>
+                    </Select>
+                </Grid>
+            </Grid> */}
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
             <Button onClick={handleCancel}>cancel</Button>
