@@ -64,7 +64,7 @@ const AdminProduct = ({ handleDelete, product }) => {
     const classes = useStyles();
 
     const [productData, setProductData] = useState(product);
-    const [editMode, setEditMode] = useState(true);
+    const [editMode, setEditMode] = useState(false);
 
     const CardContentNoPadding = styled(CardContent)(`
         padding: 0;
@@ -72,6 +72,11 @@ const AdminProduct = ({ handleDelete, product }) => {
         padding-bottom: 0;
         }
     `);
+
+    const handleCancel = () => {
+        setProductData(product);
+        setEditMode(false);
+    }
 
     const opts = {
         height: "202",
@@ -219,13 +224,14 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </Grid>
             </Grid>
 
-            {/* <Button onClick={() => handleDelete(id)}>delete btn</Button> */}
+            <Button onClick={() => handleDelete(id)}>delete btn</Button>
+            <Button onClick={handleCancel}>cancel</Button>
         </Card>
     ) : (
         <Card className="card" sx={{ width: 0.4 }}>
             <div className="card_container">
                 <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
-                <Delete className="delete_btn" onClick={() => handleDelete(id)} />
+                <Edit className="edit_btn" onClick={() => setEditMode(true)} />
             </div>
 
             <Accordion>
