@@ -1,10 +1,7 @@
-const Locations = () => {
+import React from "react";
 
-    return (
-        <div className="locations">
-            This is locations
-        </div>
-    );
-}
+const Locations = () => {
+    return <div className="locations">This is locations</div>;
+};
 
 export default Locations;

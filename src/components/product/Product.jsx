@@ -1,44 +1,66 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 import React from "react";
-import styles from './Product.css';
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Button,
+    Typography,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    TextField,
+} from "@mui/material";
+import { ExpandMore } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
+import styles from "./Product.css";
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-const Product = ({product_name, product_number, description, image, link}) => {
-    // const opts = {
-    //     height: '270',
-    //     width: '480'
-    // };
+const Product = ({
+    id,
+    product_number,
+    product_name,
+    box_per_case,
+    product_per_box,
+    pieces_per_product,
+    category,
+    available,
+    tags,
+    description,
+    image,
+    video_link,
+}) => {
+    const CardContentNoPadding = styled(CardContent)(`
+        padding: 0;
+        &:last-child {
+        padding-bottom: 0;
+        }
+    `);
 
     return (
         <Card sx={{ maxWidth: 475 }}>
-            <CardMedia
-            sx={{ maxHeight: 400, maxWidth: "auto" }}
-            component="img"
-            image={image}
-            alt="display img"
-            />
-            <CardContent>
-                <Typography variant="h5" component="div">
-                    {product_name}
-                </Typography>
-                <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
-                    {product_number}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-                    {/* <YouTube videoId={link} opts={opts}/> */}
-                    {description}
-                </Typography>
-            </CardContent>
+            <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMore />}>
+                    <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
+                        <Typography variant="h5" component="div">
+                            {product_name}
+                        </Typography>
+                        <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
+                            {product_number}
+                        </Typography>
+                    </CardContentNoPadding>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography variant="body2" color="text.secondary">
+                        {description}
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
         </Card>
     );
-}
-
-
+};
 
 export default Product;

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable prefer-template */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/button-has-type */
@@ -13,6 +15,7 @@ import {
     createProduct as CreateProductMutation,
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
+import { AdminProduct } from "../../components";
 
 const CustomColorCheckbox = withStyles({
     root: {
@@ -118,10 +121,13 @@ const Admin = () => {
         await API.graphql({ query: DeleteProductMutation, variables: { input: { id } } });
     }
 
+    const handleDelete = (id) => {
+        deleteProduct({ id });
+    };
+
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
-
             <div className="input_row">
                 <TextField
                     className={classes.root}
@@ -262,12 +268,7 @@ const Admin = () => {
             </div>
 
             {products.map((product) => (
-                <div key={product.id || product.product_name}>
-                    <h2>{product.product_name}</h2>
-                    <p>{product.product_number}</p>
-                    <button onClick={() => deleteProduct(product)}>Delete product</button>
-                    {product.image && <img src={product.image} style={{ width: 400 }} />}
-                </div>
+                <AdminProduct handleDelete={handleDelete} product={product} />
             ))}
             <AmplifySignOut />
         </div>
