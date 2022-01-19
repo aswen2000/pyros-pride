@@ -20,6 +20,7 @@ import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import { API } from "aws-amplify";
 import {
     videoSizeOpts,
     MenuProps,
@@ -64,6 +65,11 @@ const AdminProduct = ({ handleDelete, product }) => {
             target: { value },
         } = event;
         setSelectedTags(typeof value === "string" ? value.split(",") : value);
+    };
+
+    async function handleSave(event){
+        // await API.graphql({ query: UpdateTag, variables: { input: { id } } });
+        console.log("handling save");
     };
 
     const tags = [
@@ -247,6 +253,7 @@ const AdminProduct = ({ handleDelete, product }) => {
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
             <Button onClick={handleCancel}>cancel</Button>
+            <Button onClick={() => handleSave()}>save</Button>
         </Card>
     ) : (
         <Card className="card" sx={{ width: 0.4 }}>

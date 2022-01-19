@@ -11,7 +11,7 @@ type Product @model {
   pieces_per_product: Int
   category: String
   available: Boolean
-  tags: String
+  tags: [String]
   description: String
   image: String
   video_link: String
