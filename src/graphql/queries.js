@@ -48,3 +48,30 @@ export const listProducts = /* GraphQL */ `
     }
   }
 `;
+export const getTag = /* GraphQL */ `
+  query GetTag($id: ID!) {
+    getTag(id: $id) {
+      id
+      tag
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTags = /* GraphQL */ `
+  query ListTags(
+    $filter: ModelTagFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
