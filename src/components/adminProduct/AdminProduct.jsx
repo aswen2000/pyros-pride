@@ -219,32 +219,31 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
-            <Grid container alignItems="center" justifyContent="center">
-                <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-                    <Select
-                        labelId="tag-select-label"
-                        id="tag-select"
-                        multiple
-                        value={selectedTags}
-                        onChange={handleChange}
-                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <Chip key={value} label={value} />
-                                ))}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}
-                    >
-                        {tags.map((name) => (
-                            <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
-                                {name}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </Grid>
-            </Grid>
+            <div>
+                <Select
+                    labelId="tag-select-label"
+                    id="tag-select"
+                    sx={{ width: 0.75 }}
+                    multiple
+                    value={selectedTags}
+                    onChange={handleChange}
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {tags.map((name) => (
+                        <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                            {name}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </div>
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
             <Button onClick={handleCancel}>cancel</Button>
