@@ -12,12 +12,7 @@ export const getProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        id
-        tag
-        createdAt
-        updatedAt
-      }
+      tags
       description
       image
       video_link
@@ -42,12 +37,7 @@ export const listProducts = /* GraphQL */ `
         pieces_per_product
         category
         available
-        tags {
-          id
-          tag
-          createdAt
-          updatedAt
-        }
+        tags
         description
         image
         video_link
