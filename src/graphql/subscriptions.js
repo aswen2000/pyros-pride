@@ -12,7 +12,12 @@ export const onCreateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -32,7 +37,12 @@ export const onUpdateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -52,10 +62,45 @@ export const onDeleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTag = /* GraphQL */ `
+  subscription OnCreateTag {
+    onCreateTag {
+      id
+      tag
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTag = /* GraphQL */ `
+  subscription OnUpdateTag {
+    onUpdateTag {
+      id
+      tag
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTag = /* GraphQL */ `
+  subscription OnDeleteTag {
+    onDeleteTag {
+      id
+      tag
       createdAt
       updatedAt
     }

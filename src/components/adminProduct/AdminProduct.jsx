@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import {
     Card,
-    CardContent,
     CardMedia,
     Button,
     Typography,
@@ -12,40 +10,26 @@ import {
     AccordionDetails,
     TextField,
     Grid,
-    Checkbox,
     Select,
-    MenuItem
+    MenuItem,
+    OutlinedInput,
+    Box,
+    Chip,
 } from "@mui/material";
-import { ExpandMore, Delete, MoreVert, Edit } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { ExpandMore, Edit } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import { API } from "aws-amplify";
+import {
+    videoSizeOpts,
+    MenuProps,
+    CardContentNoPadding,
+    getStyles,
+    useStyles,
+    CustomColorCheckbox,
+} from "./adminProductUtils";
 import "./AdminProduct.css";
-
-const CustomColorCheckbox = withStyles({
-    root: {
-        color: "#000000",
-        "&$checked": {
-            color: "#2196f3",
-        },
-    },
-    checked: {},
-})((props) => <Checkbox color="default" {...props} />);
-
-const useStyles = makeStyles({
-    root: {
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-    },
-});
 
 const AdminProduct = ({ handleDelete, product }) => {
     const {
@@ -55,35 +39,51 @@ const AdminProduct = ({ handleDelete, product }) => {
         box_per_case,
         product_per_box,
         pieces_per_product,
-        category,
+        // category,
         available,
-        tags,
+        // tags,
         description,
         image,
         video_link,
     } = product;
 
     const classes = useStyles();
+    const theme = useTheme();
 
     const [productData, setProductData] = useState(product);
     const [editMode, setEditMode] = useState(false);
-
-    const CardContentNoPadding = styled(CardContent)(`
-        padding: 0;
-        &:last-child {
-        padding-bottom: 0;
-        }
-    `);
+    const [selectedTags, setSelectedTags] = useState([]); // TODO: should be included within productData
 
     const handleCancel = () => {
         setProductData(product);
         setEditMode(false);
+        setSelectedTags([]);
     };
 
-    const opts = {
-        height: "202",
-        width: "360",
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
+
+    async function handleSave(event){
+        // await API.graphql({ query: UpdateTag, variables: { input: { id } } });
+        console.log("handling save");
+    };
+
+    const tags = [
+        "Oliver Hansen",
+        "Van Henry",
+        "April Tucker",
+        "Ralph Hubbard",
+        "Omar Alexander",
+        "Carlos Abbott",
+        "Miriam Wagner",
+        "Bradley Wilkerson",
+        "Virginia Andrews",
+        "Kelly Snyder",
+    ];
 
     return editMode ? (
         <Card className="card" sx={{ width: 0.5 }}>
@@ -97,7 +97,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                     />
                 </div>
                 <div className="media_container">
-                    <YouTube videoId={video_link} opts={opts} />
+                    <YouTube videoId={video_link} opts={videoSizeOpts} />
                 </div>
             </div>
 
@@ -225,24 +225,35 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
-            {/* <Grid container alignItems="center" justifyContent="center">
-                <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-                    <Select
-                        autoWidth
-                        label="Age"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
+            <div>
+                <Select
+                    labelId="tag-select-label"
+                    id="tag-select"
+                    sx={{ width: 0.75 }}
+                    multiple
+                    value={selectedTags}
+                    onChange={handleChange}
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {tags.map((name) => (
+                        <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                            {name}
                         </MenuItem>
-                        <MenuItem value={10}>Twenty</MenuItem>
-                        <MenuItem value={21}>Twenty one</MenuItem>
-                        <MenuItem value={22}>Twenty one and a half</MenuItem>
-                    </Select>
-                </Grid>
-            </Grid> */}
+                    ))}
+                </Select>
+            </div>
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>
             <Button onClick={handleCancel}>cancel</Button>
+            <Button onClick={() => handleSave()}>save</Button>
         </Card>
     ) : (
         <Card className="card" sx={{ width: 0.4 }}>
