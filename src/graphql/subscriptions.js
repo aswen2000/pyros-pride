@@ -12,7 +12,12 @@ export const onCreateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -32,7 +37,12 @@ export const onUpdateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -52,7 +62,12 @@ export const onDeleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link

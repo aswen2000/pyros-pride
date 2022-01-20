@@ -15,7 +15,12 @@ export const createProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -38,7 +43,12 @@ export const updateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
@@ -61,7 +71,12 @@ export const deleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        id
+        tag
+        createdAt
+        updatedAt
+      }
       description
       image
       video_link
