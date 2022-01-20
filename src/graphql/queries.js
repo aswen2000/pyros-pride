@@ -12,7 +12,16 @@ export const getProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
+      }
       description
       image
       video_link
@@ -37,7 +46,9 @@ export const listProducts = /* GraphQL */ `
         pieces_per_product
         category
         available
-        tags
+        tags {
+          nextToken
+        }
         description
         image
         video_link
@@ -55,6 +66,7 @@ export const getTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -70,6 +82,7 @@ export const listTags = /* GraphQL */ `
         tag
         createdAt
         updatedAt
+        productTagsId
       }
       nextToken
     }

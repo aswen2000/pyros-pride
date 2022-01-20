@@ -15,7 +15,16 @@ export const createProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
+      }
       description
       image
       video_link
@@ -38,7 +47,16 @@ export const updateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
+      }
       description
       image
       video_link
@@ -61,7 +79,16 @@ export const deleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags
+      tags {
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
+      }
       description
       image
       video_link
@@ -80,6 +107,7 @@ export const createTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -93,6 +121,7 @@ export const updateTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -106,6 +135,7 @@ export const deleteTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
