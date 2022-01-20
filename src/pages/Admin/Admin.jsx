@@ -30,12 +30,12 @@ const CustomColorCheckbox = withStyles({
 const initialFormState = {
     product_number: "",
     product_name: "",
-    box_per_case: "",
-    product_per_box: "",
-    pieces_per_product: "",
+    box_per_case: null,
+    product_per_box: null,
+    pieces_per_product: null,
     category: "",
     available: false,
-    tags: "",
+    tags: [],
     description: "",
     image: "",
     video_link: "",
@@ -224,7 +224,7 @@ const Admin = () => {
                     id="tags"
                     label="Tags"
                     variant="outlined"
-                    onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+                    // onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                     value={formData.tags}
                 />
             </div>
