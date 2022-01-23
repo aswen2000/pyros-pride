@@ -54,6 +54,20 @@ const useStyles = makeStyles({
             borderColor: "#e5e5e5",
         },
     },
+    select: {
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#e5e5e5",
+        },
+        "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#e5e5e5",
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#e5e5e5",
+        },
+    },
+    icon: {
+        color: "white",
+    },
 });
 
 export function getStyles(name, personName, theme) {
@@ -86,18 +100,7 @@ const Admin = () => {
     const [formData, setFormData] = useState(initialFormState);
 
     // TODO: Delete and replace with call to DB
-    const tags = [
-        "Oliver Hansen",
-        "Van Henry",
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Miriam Wagner",
-        "Bradley Wilkerson",
-        "Virginia Andrews",
-        "Kelly Snyder",
-    ];
+    const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
 
     useEffect(() => {
         fetchProducts();
@@ -115,7 +118,6 @@ const Admin = () => {
         const {
             target: { value },
         } = event;
-        // setSelectedTags(typeof value === "string" ? value.split(",") : value);
         setFormData({ ...formData, tags: typeof value === "string" ? value.split(",") : value });
     };
 
@@ -257,11 +259,14 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-            <Select
+                <Select
                     labelId="tag-select-label"
+                    label="Tags"
                     id="tag-select"
-                    sx={{ width: 0.75 }}
+                    sx={{ width: 1, color: "white" }}
                     multiple
+                    className={classes.select}
+                    classes={{ icon: classes.icon }}
                     value={formData.tags}
                     onChange={handleTagsChange}
                     input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
