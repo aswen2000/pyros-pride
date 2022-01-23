@@ -66,7 +66,7 @@ const useStyles = makeStyles({
         },
     },
     icon: {
-        color: "white",
+        color: "#e5e5e5",
     },
 });
 
