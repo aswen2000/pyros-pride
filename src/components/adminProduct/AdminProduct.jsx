@@ -15,6 +15,8 @@ import {
     OutlinedInput,
     Box,
     Chip,
+    InputLabel,
+    FormControl,
 } from "@mui/material";
 import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -67,10 +69,10 @@ const AdminProduct = ({ handleDelete, product }) => {
         setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
 
-    async function handleSave(event){
+    async function handleSave(event) {
         // await API.graphql({ query: UpdateTag, variables: { input: { id } } });
         console.log("handling save");
-    };
+    }
 
     const tags = [
         "Oliver Hansen",
@@ -225,30 +227,35 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
-            <div>
-                <Select
-                    labelId="tag-select-label"
-                    id="tag-select"
-                    sx={{ width: 0.75 }}
-                    multiple
-                    value={selectedTags}
-                    onChange={handleChange}
-                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                    renderValue={(selected) => (
-                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                            {selected.map((value) => (
-                                <Chip key={value} label={value} />
-                            ))}
-                        </Box>
-                    )}
-                    MenuProps={MenuProps}
-                >
-                    {tags.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
-                            {name}
-                        </MenuItem>
-                    ))}
-                </Select>
+            <div className="control_div">
+                <FormControl className="control" sx={{ width: 1 }}>
+                    <InputLabel className="control_child" id="tag-select-label">Tags</InputLabel>
+                    <Select
+                        labelId="tag-select-label"
+                        id="tag-select"
+                        className="control_child"
+                        sx={{ width: 0.75 }}
+                        multiple
+                        value={selectedTags}
+                        onChange={handleChange}
+                        label="Tags"
+                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                                {selected.map((value) => (
+                                    <Chip key={value} label={value} />
+                                ))}
+                            </Box>
+                        )}
+                        MenuProps={MenuProps}
+                    >
+                        {tags.map((name) => (
+                            <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                                {name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </div>
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>

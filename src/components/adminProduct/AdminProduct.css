@@ -57,3 +57,16 @@
     color: #000000;
     display: inline-block;
 }
+
+.control {
+    text-align: center;
+}
+
+.control_child {
+    display: inline-block;
+}
+
+.control_div {
+    margin-left: 20%;
+    margin-right: auto;
+}
