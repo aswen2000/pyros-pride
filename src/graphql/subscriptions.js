@@ -12,16 +12,7 @@ export const onCreateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        items {
-          id
-          tag
-          createdAt
-          updatedAt
-          productTagsId
-        }
-        nextToken
-      }
+      tags
       description
       image
       video_link
@@ -41,16 +32,7 @@ export const onUpdateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        items {
-          id
-          tag
-          createdAt
-          updatedAt
-          productTagsId
-        }
-        nextToken
-      }
+      tags
       description
       image
       video_link
@@ -70,16 +52,7 @@ export const onDeleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        items {
-          id
-          tag
-          createdAt
-          updatedAt
-          productTagsId
-        }
-        nextToken
-      }
+      tags
       description
       image
       video_link
@@ -95,7 +68,6 @@ export const onCreateTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
-      productTagsId
     }
   }
 `;
@@ -106,7 +78,6 @@ export const onUpdateTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
-      productTagsId
     }
   }
 `;
@@ -117,7 +88,6 @@ export const onDeleteTag = /* GraphQL */ `
       tag
       createdAt
       updatedAt
-      productTagsId
     }
   }
 `;

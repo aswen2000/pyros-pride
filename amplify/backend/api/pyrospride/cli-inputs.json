@@ -3,10 +3,21 @@
   "serviceConfiguration": {
     "apiName": "pyrospride",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Projects\\pyros-pride\\pyros-pride\\amplify\\backend\\api\\pyrospride\\schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-9a087999-5506-4bfc-8035-69ab1cb1cf59/amplify/backend/api/pyrospride/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "keyDescription": "api key description",
+      "expirationTime": 30
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }
