@@ -16,7 +16,7 @@ import {
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
 import { AdminProduct } from "../../components";
-import { CustomColorCheckbox, useStyles } from "./adminStylingUtils";
+import { CustomColorCheckbox, useStyles, getStyles, MenuProps, textFieldStyles } from "./adminStylingUtils";
 
 const initialFormState = {
     product_number: "",
@@ -30,28 +30,6 @@ const initialFormState = {
     description: "",
     image: "",
     video_link: "",
-};
-
-function getStyles(name, personName, theme) {
-    return {
-        fontWeight:
-            personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
-    };
-}
-
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: 48 * 4.5 + 8,
-            width: 250,
-        },
-    },
-};
-
-const textFieldStyles = {
-    style: {
-        color: "#e5e5e5",
-    },
 };
 
 const Admin = () => {

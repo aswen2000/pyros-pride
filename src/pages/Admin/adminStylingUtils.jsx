@@ -40,3 +40,25 @@ export const CustomColorCheckbox = withStyles({
     },
     checked: {},
 })((props) => <Checkbox color="default" {...props} />);
+
+export function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+            personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+    };
+}
+
+export const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: 48 * 4.5 + 8,
+            width: 250,
+        },
+    },
+};
+
+export const textFieldStyles = {
+    style: {
+        color: "#e5e5e5",
+    },
+};
