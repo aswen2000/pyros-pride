@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Checkbox } from "@mui/material";
+import { Checkbox, Chip } from "@mui/material";
 
 export const useStyles = makeStyles({
     root: {
@@ -40,6 +40,12 @@ export const CustomColorCheckbox = withStyles({
     },
     checked: {},
 })((props) => <Checkbox color="default" {...props} />);
+
+export const ColoredChip = withStyles({
+    root: {
+        backgroundColor: "#1976D2",
+    },
+})(Chip);
 
 export function getStyles(name, personName, theme) {
     return {

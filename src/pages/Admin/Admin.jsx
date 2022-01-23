@@ -16,7 +16,14 @@ import {
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
 import { AdminProduct } from "../../components";
-import { CustomColorCheckbox, useStyles, getStyles, MenuProps, textFieldStyles } from "./adminStylingUtils";
+import {
+    CustomColorCheckbox,
+    ColoredChip,
+    useStyles,
+    getStyles,
+    MenuProps,
+    textFieldStyles,
+} from "./adminStylingUtils";
 
 const initialFormState = {
     product_number: "",
@@ -213,7 +220,7 @@ const Admin = () => {
                     renderValue={(selected) => (
                         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                             {selected.map((value) => (
-                                <Chip key={value} label={value} />
+                                <ColoredChip key={value} label={value} />
                             ))}
                         </Box>
                     )}
