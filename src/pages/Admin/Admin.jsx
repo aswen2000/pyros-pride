@@ -8,8 +8,9 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { Checkbox, TextField, Button, Typography } from "@mui/material";
+import { Checkbox, TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box, Chip } from "@mui/material";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { useTheme } from "@mui/material/styles";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
     createProduct as CreateProductMutation,
@@ -35,7 +36,7 @@ const initialFormState = {
     pieces_per_product: null,
     category: "",
     available: false,
-    tags: "",
+    tags: [],
     description: "",
     image: "",
     video_link: "",
@@ -55,6 +56,22 @@ const useStyles = makeStyles({
     },
 });
 
+export function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+            personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+    };
+}
+
+export const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: 48 * 4.5 + 8,
+            width: 250,
+        },
+    },
+};
+
 const textFieldStyles = {
     style: {
         color: "#e5e5e5",
@@ -63,9 +80,24 @@ const textFieldStyles = {
 
 const Admin = () => {
     const classes = useStyles();
+    const theme = useTheme();
 
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
+
+    // TODO: Delete and replace with call to DB
+    const tags = [
+        "Oliver Hansen",
+        "Van Henry",
+        "April Tucker",
+        "Ralph Hubbard",
+        "Omar Alexander",
+        "Carlos Abbott",
+        "Miriam Wagner",
+        "Bradley Wilkerson",
+        "Virginia Andrews",
+        "Kelly Snyder",
+    ];
 
     useEffect(() => {
         fetchProducts();
@@ -78,6 +110,14 @@ const Admin = () => {
         await Storage.put(file.name, file);
         fetchProducts();
     }
+
+    const handleTagsChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        // setSelectedTags(typeof value === "string" ? value.split(",") : value);
+        setFormData({ ...formData, tags: typeof value === "string" ? value.split(",") : value });
+    };
 
     async function fetchProducts() {
         const apiData = await API.graphql({ query: ListProducts });
@@ -96,6 +136,7 @@ const Admin = () => {
 
     async function createProduct() {
         if (!formData.product_name || !formData.product_number) {
+            console.log(formData);
             return;
         }
 
@@ -216,17 +257,29 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    fullWidth
-                    id="tags"
-                    label="Tags"
-                    variant="outlined"
-                    // onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+            <Select
+                    labelId="tag-select-label"
+                    id="tag-select"
+                    sx={{ width: 0.75 }}
+                    multiple
                     value={formData.tags}
-                />
+                    onChange={handleTagsChange}
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {tags.map((name) => (
+                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                            {name}
+                        </MenuItem>
+                    ))}
+                </Select>
             </div>
 
             <div className="input_row">
