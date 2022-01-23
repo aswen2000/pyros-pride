@@ -8,8 +8,7 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { Checkbox, TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box, Chip } from "@mui/material";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box, Chip } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
@@ -17,16 +16,7 @@ import {
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
 import { AdminProduct } from "../../components";
-
-const CustomColorCheckbox = withStyles({
-    root: {
-        color: "#e5e5e5",
-        "&$checked": {
-            color: "#2196f3",
-        },
-    },
-    checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+import { CustomColorCheckbox, useStyles } from "./adminStylingUtils";
 
 const initialFormState = {
     product_number: "",
@@ -42,42 +32,14 @@ const initialFormState = {
     video_link: "",
 };
 
-const useStyles = makeStyles({
-    root: {
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-    },
-    select: {
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-    },
-    icon: {
-        color: "#e5e5e5",
-    },
-});
-
-export function getStyles(name, personName, theme) {
+function getStyles(name, personName, theme) {
     return {
         fontWeight:
             personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
     };
 }
 
-export const MenuProps = {
+const MenuProps = {
     PaperProps: {
         style: {
             maxHeight: 48 * 4.5 + 8,
