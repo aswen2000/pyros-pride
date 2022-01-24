@@ -208,7 +208,7 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <FormControl sx={{ width: 1 }}>
+                <FormControl fullWidth>
                     <InputLabel sx={{ width: 1 }} id="tag-select-label">
                         Tags
                     </InputLabel>
