@@ -8,7 +8,17 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box } from "@mui/material";
+import {
+    TextField,
+    Button,
+    Typography,
+    Select,
+    OutlinedInput,
+    MenuItem,
+    Box,
+    Checkbox,
+    ListItemText,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { FormControlLabel, FormControl, InputLabel } from "@material-ui/core";
 import { listProducts as ListProducts } from "../../graphql/queries";
@@ -208,36 +218,40 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <FormControl fullWidth>
-                    <InputLabel className={classes.label} id="creation-tag-select-label">
-                        Tags
-                    </InputLabel>
-                    <Select
-                        labelId="creation-tag-select-label"
-                        id="tag-select"
-                        sx={{ width: 1 }}
-                        multiple
-                        className={classes.select}
-                        classes={{ icon: classes.icon }}
-                        value={formData.tags}
-                        onChange={handleTagsChange}
-                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <ColoredChip key={value} label={value} />
-                                ))}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}
-                    >
-                        {tags.map((name) => (
-                            <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
-                                {name}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                {/* <FormControl fullWidth> */}
+                {/* <InputLabel id="creation-tag-select-label">Tags</InputLabel> */}
+                <Select
+                    labelId="creation-tag-select-label"
+                    id="creation-tag-select"
+                    sx={{ width: 1 }}
+                    className={classes.select}
+                    classes={{ icon: classes.icon }}
+                    multiple
+                    value={formData.tags}
+                    onChange={handleTagsChange}
+                    label="Tags"
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <ColoredChip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {tags.map((name) => (
+                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                            <Checkbox
+                                sx={{ m: 0, mr: 1, p: 0 }}
+                                size="small"
+                                checked={formData.tags.indexOf(name) > -1}
+                            />
+                            <ListItemText primary={name} />
+                        </MenuItem>
+                    ))}
+                </Select>
+                {/* </FormControl> */}
             </div>
 
             <div className="input_row">
