@@ -227,14 +227,13 @@ const AdminProduct = ({ handleDelete, product }) => {
                     </span>
                 </Grid>
             </Grid>
-            <div className="control_div">
-                <FormControl className="control" sx={{ width: 1 }}>
-                    <InputLabel className="control_child" id="tag-select-label">Tags</InputLabel>
+            <div>
+                <FormControl sx={{ width: 0.75 }}>
+                    <InputLabel id="tag-select-label">Tags</InputLabel>
                     <Select
                         labelId="tag-select-label"
                         id="tag-select"
-                        className="control_child"
-                        sx={{ width: 0.75 }}
+                        sx={{ width: 1 }}
                         multiple
                         value={selectedTags}
                         onChange={handleChange}
