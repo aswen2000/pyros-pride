@@ -8,8 +8,9 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box, Chip } from "@mui/material";
+import { TextField, Button, Typography, Select, OutlinedInput, MenuItem, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { FormControlLabel, FormControl, InputLabel } from "@material-ui/core";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
     createProduct as CreateProductMutation,
@@ -118,6 +119,7 @@ const Admin = () => {
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
+            {/* <FormControl sx={{ width: 1 }}> */}
             <div className="input_row">
                 <TextField
                     className={classes.root}
@@ -206,32 +208,37 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <Select
-                    labelId="tag-select-label"
-                    label="Tags"
-                    id="tag-select"
-                    sx={{ width: 1, color: "white" }}
-                    multiple
-                    className={classes.select}
-                    classes={{ icon: classes.icon }}
-                    value={formData.tags}
-                    onChange={handleTagsChange}
-                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                    renderValue={(selected) => (
-                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                            {selected.map((value) => (
-                                <ColoredChip key={value} label={value} />
-                            ))}
-                        </Box>
-                    )}
-                    MenuProps={MenuProps}
-                >
-                    {tags.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
-                            {name}
-                        </MenuItem>
-                    ))}
-                </Select>
+                <FormControl sx={{ width: 1 }}>
+                    <InputLabel sx={{ width: 1 }} id="tag-select-label">
+                        Tags
+                    </InputLabel>
+                    <Select
+                        labelId="tag-select-label"
+                        label="Tags"
+                        id="tag-select"
+                        sx={{ width: 1 }}
+                        multiple
+                        className={classes.select}
+                        classes={{ icon: classes.icon }}
+                        value={formData.tags}
+                        onChange={handleTagsChange}
+                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                                {selected.map((value) => (
+                                    <ColoredChip key={value} label={value} />
+                                ))}
+                            </Box>
+                        )}
+                        MenuProps={MenuProps}
+                    >
+                        {tags.map((name) => (
+                            <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                                {name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </div>
 
             <div className="input_row">
@@ -265,6 +272,7 @@ const Admin = () => {
             <div className="input_row">
                 <input type="file" className="file_input" onChange={onChange} />
             </div>
+            {/* </FormControl> */}
 
             <div className="input_row">
                 <Button onClick={createProduct} variant="contained">

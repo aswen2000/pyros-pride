@@ -105,7 +105,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </div>
             </div>
 
-            <div>
+            <div className="row">
                 <div className="media_input_container">
                     <input
                         type="file"
@@ -130,7 +130,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </div>
             </div>
 
-            <Grid container alignItems="center" justifyContent="center">
+            <Grid container className="row" alignItems="center" justifyContent="center">
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <TextField
                         defaultValue={product_name}
@@ -157,7 +157,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </Grid>
             </Grid>
 
-            <div>
+            <div className="row">
                 <TextField
                     defaultValue={description}
                     label="Description"
@@ -171,7 +171,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 />
             </div>
 
-            <Grid container>
+            <Grid className="row" container>
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <TextField
                         defaultValue={box_per_case}
