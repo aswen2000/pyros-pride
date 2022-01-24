@@ -209,12 +209,11 @@ const Admin = () => {
 
             <div className="input_row">
                 <FormControl fullWidth>
-                    <InputLabel sx={{ width: 1 }} id="tag-select-label">
+                    <InputLabel className={classes.label} id="creation-tag-select-label">
                         Tags
                     </InputLabel>
                     <Select
-                        labelId="tag-select-label"
-                        label="Tags"
+                        labelId="creation-tag-select-label"
                         id="tag-select"
                         sx={{ width: 1 }}
                         multiple

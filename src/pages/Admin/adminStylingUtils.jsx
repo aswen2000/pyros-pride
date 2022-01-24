@@ -29,6 +29,14 @@ export const useStyles = makeStyles({
     icon: {
         color: "#e5e5e5",
     },
+    label: {
+        "&.MuiFormLabel-root": {
+            color: "#e5e5e5",
+        },
+        "&.MuiInputLabel-formControl": {
+            transform: "translate(14px, 20px) scale(1)",
+        },
+    },
 });
 
 export const CustomColorCheckbox = withStyles({
