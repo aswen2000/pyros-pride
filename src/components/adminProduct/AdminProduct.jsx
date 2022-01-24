@@ -17,6 +17,8 @@ import {
     Chip,
     InputLabel,
     FormControl,
+    ListItemText,
+    Checkbox,
 } from "@mui/material";
 import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -250,7 +252,12 @@ const AdminProduct = ({ handleDelete, product }) => {
                     >
                         {tags.map((name) => (
                             <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
-                                {name}
+                                <Checkbox
+                                    sx={{ m: 0, mr: 1, p: 0 }}
+                                    size="small"
+                                    checked={selectedTags.indexOf(name) > -1}
+                                />
+                                <ListItemText primary={name} />
                             </MenuItem>
                         ))}
                     </Select>
