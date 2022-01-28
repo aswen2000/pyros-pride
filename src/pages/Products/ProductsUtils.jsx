@@ -8,8 +8,8 @@ import "./Products.css";
 const ImageGalleryList = styled("ul")(({ theme }) => ({
     display: "grid",
     padding: 0,
-    // margin: theme.spacing(2, 2),
-    gap: 8,
+    // gap: 24,
+    rowGap: 16,
     [theme.breakpoints.up("sm")]: {
         gridTemplateColumns: "repeat(1, 1fr)",
     },
@@ -22,7 +22,6 @@ const ImageGalleryList = styled("ul")(({ theme }) => ({
 }));
 
 export default function ImageGallery({ imageData }) {
-
     return (
         <ImageGalleryList className="image_list">
             {imageData.map((image) => (

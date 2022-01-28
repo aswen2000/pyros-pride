@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
-import { ImageList, ImageListItem } from "@mui/material";
+import { ImageList, ImageListItem, CircularProgress } from "@mui/material";
 import Product from "../../components/product/Product";
 import ImageGallery from "./ProductsUtils";
 import "./Products.css";
@@ -9,6 +9,7 @@ import { AdminProduct } from "../../components";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         fetchProducts();
@@ -28,11 +29,13 @@ const Products = () => {
             })
         );
         setProducts(apiData.data.listProducts.items);
+        setIsLoaded(true);
     }
 
     return (
         <div>
-            <ImageGallery imageData={products}/>
+            {isLoaded ? <ImageGallery imageData={products} /> : <CircularProgress />}
+
             {/* <ImageList className="image_list" sx={{ width: 0.65 }} variant="masonry" cols={2} gap={8}>
                 {products.map((item) => (
                     <ImageListItem key={item.img}>

@@ -1,9 +1,5 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-template */
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/alt-text */
+
 import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
@@ -18,6 +14,7 @@ import {
     Box,
     Checkbox,
     ListItemText,
+    CircularProgress,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { FormControlLabel, FormControl, InputLabel } from "@material-ui/core";
@@ -54,6 +51,7 @@ const Admin = () => {
     const classes = useStyles();
     const theme = useTheme();
 
+    const [isLoaded, setIsLoaded] = useState(false);
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
 
@@ -92,6 +90,7 @@ const Admin = () => {
             })
         );
         setProducts(apiData.data.listProducts.items);
+        setIsLoaded(true);
     }
 
     async function createProduct() {
@@ -293,9 +292,19 @@ const Admin = () => {
                 </Button>
             </div>
 
-            {products.map((product) => (
+            {isLoaded ? (
+                <div>
+                    {products.map((product) => (
+                        <AdminProduct handleDelete={handleDelete} product={product} />
+                    ))}
+                </div>
+            ) : (
+                <CircularProgress />
+            )}
+
+            {/* {products.map((product) => (
                 <AdminProduct handleDelete={handleDelete} product={product} />
-            ))}
+            ))} */}
             <AmplifySignOut />
         </div>
     );
