@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
 import { ImageList, ImageListItem } from "@mui/material";
 import Product from "../../components/product/Product";
+import ImageGallery from "./ProductsUtils";
 import "./Products.css";
 import { listProducts } from "../../graphql/queries";
 import { AdminProduct } from "../../components";
@@ -31,7 +32,8 @@ const Products = () => {
 
     return (
         <div>
-            <ImageList className="image_list" sx={{ width: 0.65 }} variant="masonry" cols={2} gap={8}>
+            <ImageGallery imageData={products}/>
+            {/* <ImageList className="image_list" sx={{ width: 0.65 }} variant="masonry" cols={2} gap={8}>
                 {products.map((item) => (
                     <ImageListItem key={item.img}>
                         <Product
@@ -43,7 +45,7 @@ const Products = () => {
                         />
                     </ImageListItem>
                 ))}
-            </ImageList>
+            </ImageList> */}
         </div>
     );
 };
