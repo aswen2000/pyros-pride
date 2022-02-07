@@ -13,10 +13,14 @@ export const onCreateProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -38,10 +42,14 @@ export const onUpdateProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -63,10 +71,14 @@ export const onDeleteProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -81,8 +93,27 @@ export const onCreateTag = /* GraphQL */ `
     onCreateTag {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -91,8 +122,27 @@ export const onUpdateTag = /* GraphQL */ `
     onUpdateTag {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -101,8 +151,27 @@ export const onDeleteTag = /* GraphQL */ `
     onDeleteTag {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;

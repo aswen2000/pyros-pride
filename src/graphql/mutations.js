@@ -16,10 +16,14 @@ export const createProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -44,10 +48,14 @@ export const updateProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -72,10 +80,14 @@ export const deleteProduct = /* GraphQL */ `
       category
       available
       tags {
-        id
-        tag
-        createdAt
-        updatedAt
+        items {
+          id
+          tag
+          createdAt
+          updatedAt
+          productTagsId
+        }
+        nextToken
       }
       description
       image
@@ -93,8 +105,27 @@ export const createTag = /* GraphQL */ `
     createTag(input: $input, condition: $condition) {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -106,8 +137,27 @@ export const updateTag = /* GraphQL */ `
     updateTag(input: $input, condition: $condition) {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;
@@ -119,8 +169,27 @@ export const deleteTag = /* GraphQL */ `
     deleteTag(input: $input, condition: $condition) {
       id
       tag
+      product {
+        id
+        product_number
+        product_name
+        box_per_case
+        product_per_box
+        pieces_per_product
+        category
+        available
+        tags {
+          nextToken
+        }
+        description
+        image
+        video_link
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
+      productTagsId
     }
   }
 `;

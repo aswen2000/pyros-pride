@@ -1,6 +1,6 @@
 {
   "auth": {
-    "pyrospride07e1999b": {
+    "pyrospride42effeaa": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -36,19 +36,14 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDays": 360,
+              "apiKeyExpirationDate": "2023-02-02T02:35:12.908Z",
+              "description": "key"
             }
           },
           "additionalAuthenticationProviders": []
         }
       }
-    }
-  },
-  "storage": {
-    "product": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
     }
   }
 }

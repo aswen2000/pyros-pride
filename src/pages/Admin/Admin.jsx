@@ -35,7 +35,7 @@ const initialFormState = {
     pieces_per_product: null,
     category: "",
     available: false,
-    tags: [],
+    // tags: [],
     description: "",
     image: "",
     video_link: "",
