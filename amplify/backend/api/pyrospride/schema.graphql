@@ -4,7 +4,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type Product @model {
   id: ID!
-  product_number: String! #maybe shouldn't be required?
+  product_number: String!
   product_name: String
   box_per_case: Int
   product_per_box: Int
@@ -23,21 +23,21 @@ type Tag @model {
   product: Product @belongsTo
 }
 
-# type Blog @model {
-#   id: ID!
-#   name: String!
-#   posts: [Post] @hasMany
-# }
+type Blog @model {
+  id: ID!
+  name: String!
+  posts: [Post] @hasMany
+}
 
-# type Post @model {
-#   id: ID!
-#   title: String!
-#   blog: Blog @belongsTo
-#   comments: [Comment] @hasMany
-# }
+type Post @model {
+  id: ID!
+  title: String!
+  blog: Blog @belongsTo
+  comments: [Comment] @hasMany
+}
 
-# type Comment @model {
-#   id: ID!
-#   post: Post @belongsTo
-#   content: String!
-# }
+type Comment @model {
+  id: ID!
+  post: Post @belongsTo
+  content: String!
+}

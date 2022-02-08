@@ -35,7 +35,7 @@ const initialFormState = {
     pieces_per_product: null,
     category: "",
     available: false,
-    // tags: [],
+    tags: [],
     description: "",
     image: "",
     video_link: "",
@@ -224,7 +224,7 @@ const Admin = () => {
                     id="tags"
                     label="Tags"
                     variant="outlined"
-                    // onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, tags: { items: e.target.value } })}
                     value={formData.tags}
                 />
             </div>
