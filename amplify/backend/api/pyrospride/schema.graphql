@@ -11,33 +11,34 @@ type Product @model {
   pieces_per_product: Int
   category: String
   available: Boolean
-  tags: [Tag] @hasMany
+  # tags: [Tag] @hasMany
+  tags: [String]
   description: String
   image: String
   video_link: String
 }
 
-type Tag @model {
-  id: ID!
-  tag: String!
-  product: Product @belongsTo
-}
+# type Tag @model {
+#   id: ID!
+#   tag: String!
+#   product: Product @belongsTo
+# }
 
-type Blog @model {
-  id: ID!
-  name: String!
-  posts: [Post] @hasMany
-}
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @hasMany
+# }
 
-type Post @model {
-  id: ID!
-  title: String!
-  blog: Blog @belongsTo
-  comments: [Comment] @hasMany
-}
+# type Post @model {
+#   id: ID!
+#   title: String!
+#   blog: Blog @belongsTo
+#   comments: [Comment] @hasMany
+# }
 
-type Comment @model {
-  id: ID!
-  post: Post @belongsTo
-  content: String!
-}
+# type Comment @model {
+#   id: ID!
+#   post: Post @belongsTo
+#   content: String!
+# }
