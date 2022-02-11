@@ -36,9 +36,9 @@ import {
 const initialFormState = {
     product_number: "",
     product_name: "",
-    box_per_case: null,
-    product_per_box: null,
-    pieces_per_product: null,
+    box_per_case: "",
+    product_per_box: "",
+    pieces_per_product: "",
     category: "",
     available: false,
     tags: [],
@@ -89,6 +89,7 @@ const Admin = () => {
                 return product;
             })
         );
+        console.log(apiData.data.listProducts.items);
         setProducts(apiData.data.listProducts.items);
         setIsLoaded(true);
     }
@@ -128,7 +129,6 @@ const Admin = () => {
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
-            {/* <FormControl sx={{ width: 1 }}> */}
             <div className="input_row">
                 <TextField
                     className={classes.root}
@@ -295,7 +295,7 @@ const Admin = () => {
             {isLoaded ? (
                 <div>
                     {products.map((product) => (
-                        <AdminProduct handleDelete={handleDelete} product={product} />
+                        <AdminProduct key={product.product_number} handleDelete={handleDelete} product={product} />
                     ))}
                 </div>
             ) : (
