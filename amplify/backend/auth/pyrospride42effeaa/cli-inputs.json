@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "pyrospride07e1999b_identitypool_07e1999b",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "pyrosp07e1999b",
-    "userPoolName": "pyrospride07e1999b_userpool_07e1999b",
+    "identityPoolName": "pyrospride42effeaa_identitypool_42effeaa",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "pyrosp42effeaa",
+    "userPoolName": "pyrospride42effeaa_userpool_42effeaa",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "pyrosp07e1999b_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "pyrosp42effeaa_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "07e1999b",
-    "resourceName": "pyrospride07e1999b",
+    "sharedId": "42effeaa",
+    "resourceName": "pyrospride42effeaa",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
@@ -43,20 +43,6 @@
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
-    "authRoleArn": {
-      "Fn::GetAtt": [
-        "AuthRole",
-        "Arn"
-      ]
-    },
-    "unauthRoleArn": {
-      "Fn::GetAtt": [
-        "UnauthRole",
-        "Arn"
-      ]
-    },
-    "breakCircularDependency": true,
-    "dependsOn": []
+    "useEnabledMfas": true
   }
 }

@@ -12,12 +12,7 @@ export const getProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        id
-        tag
-        createdAt
-        updatedAt
-      }
+      tags
       description
       image
       video_link
@@ -42,42 +37,10 @@ export const listProducts = /* GraphQL */ `
         pieces_per_product
         category
         available
-        tags {
-          id
-          tag
-          createdAt
-          updatedAt
-        }
+        tags
         description
         image
         video_link
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getTag = /* GraphQL */ `
-  query GetTag($id: ID!) {
-    getTag(id: $id) {
-      id
-      tag
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTags = /* GraphQL */ `
-  query ListTags(
-    $filter: ModelTagFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        tag
         createdAt
         updatedAt
       }

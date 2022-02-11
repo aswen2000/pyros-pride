@@ -6,7 +6,9 @@
     "gqlSchemaPath": "C:\\Projects\\pyros-pride\\pyros-pride\\amplify\\backend\\api\\pyrospride\\schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
+      "expirationTime": 360,
+      "apiKeyExpirationDate": "2023-02-02T02:35:12.908Z",
+      "keyDescription": "key"
     }
   }
 }

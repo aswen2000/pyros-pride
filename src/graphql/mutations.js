@@ -15,12 +15,7 @@ export const createProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        id
-        tag
-        createdAt
-        updatedAt
-      }
+      tags
       description
       image
       video_link
@@ -43,12 +38,7 @@ export const updateProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        id
-        tag
-        createdAt
-        updatedAt
-      }
+      tags
       description
       image
       video_link
@@ -71,54 +61,10 @@ export const deleteProduct = /* GraphQL */ `
       pieces_per_product
       category
       available
-      tags {
-        id
-        tag
-        createdAt
-        updatedAt
-      }
+      tags
       description
       image
       video_link
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createTag = /* GraphQL */ `
-  mutation CreateTag(
-    $input: CreateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    createTag(input: $input, condition: $condition) {
-      id
-      tag
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTag = /* GraphQL */ `
-  mutation UpdateTag(
-    $input: UpdateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    updateTag(input: $input, condition: $condition) {
-      id
-      tag
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTag = /* GraphQL */ `
-  mutation DeleteTag(
-    $input: DeleteTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    deleteTag(input: $input, condition: $condition) {
-      id
-      tag
       createdAt
       updatedAt
     }
