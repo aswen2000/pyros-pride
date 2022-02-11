@@ -36,9 +36,9 @@ import {
 const initialFormState = {
     product_number: "",
     product_name: "",
-    box_per_case: "",
-    product_per_box: "",
-    pieces_per_product: "",
+    box_per_case: null,
+    product_per_box: null,
+    pieces_per_product: null,
     category: "",
     available: false,
     tags: [],
@@ -62,7 +62,7 @@ const Admin = () => {
         fetchProducts();
     }, []);
 
-    async function onChange(e) {
+    async function handleSelectingImage(e) {
         if (!e.target.files[0]) return;
         const file = e.target.files[0];
         setFormData({ ...formData, image: file.name });
@@ -282,7 +282,7 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <input type="file" className="file_input" onChange={onChange} />
+                <input type="file" className="file_input" onChange={handleSelectingImage} />
             </div>
             {/* </FormControl> */}
 
