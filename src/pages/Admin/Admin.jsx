@@ -89,7 +89,7 @@ const Admin = () => {
                 return product;
             })
         );
-        console.log(apiData.data.listProducts.items);
+        // console.log(apiData.data.listProducts.items);
         setProducts(apiData.data.listProducts.items);
         setIsLoaded(true);
     }
@@ -163,7 +163,7 @@ const Admin = () => {
                     id="box_per_case"
                     label="Boxes Per Case"
                     variant="outlined"
-                    sx={{ marginRight: 1 }}
+                    // sx={{ marginRight: 1, marginLeft: 1 }}
                     onChange={(e) => setFormData({ ...formData, box_per_case: e.target.value })}
                     value={formData.box_per_case}
                 />
@@ -174,7 +174,7 @@ const Admin = () => {
                     id="product_per_box"
                     label="Product Per Box"
                     variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
+                    // sx={{ marginRight: 1, marginLeft: 1 }}
                     onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
                     value={formData.product_per_box}
                 />
@@ -185,7 +185,7 @@ const Admin = () => {
                     id="pieces_per_product"
                     label="Pieces Per Product"
                     variant="outlined"
-                    sx={{ marginLeft: 1 }}
+                    // sx={{ marginRight: 1, marginLeft: 1 }}
                     onChange={(e) => setFormData({ ...formData, pieces_per_product: e.target.value })}
                     value={formData.pieces_per_product}
                 />
