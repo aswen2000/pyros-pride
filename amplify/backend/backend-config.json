@@ -41,11 +41,7 @@
               "description": "key"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     }
