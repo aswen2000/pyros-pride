@@ -1,31 +1,37 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-template */
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/alt-text */
+
 import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { API, Storage } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
-import { Checkbox, TextField, Button, Typography } from "@mui/material";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+    TextField,
+    Button,
+    Typography,
+    Select,
+    OutlinedInput,
+    MenuItem,
+    Box,
+    Checkbox,
+    ListItemText,
+    CircularProgress,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { FormControlLabel, FormControl, InputLabel } from "@material-ui/core";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
     createProduct as CreateProductMutation,
     deleteProduct as DeleteProductMutation,
 } from "../../graphql/mutations";
 import { AdminProduct } from "../../components";
-
-const CustomColorCheckbox = withStyles({
-    root: {
-        color: "#e5e5e5",
-        "&$checked": {
-            color: "#2196f3",
-        },
-    },
-    checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+import {
+    CustomColorCheckbox,
+    ColoredChip,
+    useStyles,
+    getStyles,
+    MenuProps,
+    textFieldStyles,
+} from "./adminStylingUtils";
 
 const initialFormState = {
     product_number: "",
@@ -41,43 +47,35 @@ const initialFormState = {
     video_link: "",
 };
 
-const useStyles = makeStyles({
-    root: {
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#e5e5e5",
-        },
-    },
-});
-
-const textFieldStyles = {
-    style: {
-        color: "#e5e5e5",
-    },
-};
-
 const Admin = () => {
     const classes = useStyles();
+    const theme = useTheme();
 
+    const [isLoaded, setIsLoaded] = useState(false);
     const [products, setProducts] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
+
+    // TODO: Delete and replace with call to DB
+    const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
 
     useEffect(() => {
         fetchProducts();
     }, []);
 
-    async function onChange(e) {
+    async function handleSelectingImage(e) {
         if (!e.target.files[0]) return;
         const file = e.target.files[0];
         setFormData({ ...formData, image: file.name });
         await Storage.put(file.name, file);
         fetchProducts();
     }
+
+    const handleTagsChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setFormData({ ...formData, tags: typeof value === "string" ? value.split(",") : value });
+    };
 
     async function fetchProducts() {
         const apiData = await API.graphql({ query: ListProducts });
@@ -91,11 +89,14 @@ const Admin = () => {
                 return product;
             })
         );
+        console.log(apiData.data.listProducts.items);
         setProducts(apiData.data.listProducts.items);
+        setIsLoaded(true);
     }
 
     async function createProduct() {
         if (!formData.product_name || !formData.product_number) {
+            console.log(formData);
             return;
         }
 
@@ -216,17 +217,40 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    fullWidth
-                    id="tags"
-                    label="Tags"
-                    variant="outlined"
-                    onChange={(e) => setFormData({ ...formData, tags: { items: e.target.value } })}
+                {/* <FormControl fullWidth> */}
+                {/* <InputLabel id="creation-tag-select-label">Tags</InputLabel> */}
+                <Select
+                    labelId="creation-tag-select-label"
+                    id="creation-tag-select"
+                    sx={{ width: 1 }}
+                    className={classes.select}
+                    classes={{ icon: classes.icon }}
+                    multiple
                     value={formData.tags}
-                />
+                    onChange={handleTagsChange}
+                    label="Tags"
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value) => (
+                                <ColoredChip key={value} label={value} />
+                            ))}
+                        </Box>
+                    )}
+                    MenuProps={MenuProps}
+                >
+                    {tags.map((name) => (
+                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                            <Checkbox
+                                sx={{ m: 0, mr: 1, p: 0 }}
+                                size="small"
+                                checked={formData.tags.indexOf(name) > -1}
+                            />
+                            <ListItemText primary={name} />
+                        </MenuItem>
+                    ))}
+                </Select>
+                {/* </FormControl> */}
             </div>
 
             <div className="input_row">
@@ -258,8 +282,9 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                <input type="file" className="file_input" onChange={onChange} />
+                <input type="file" className="file_input" onChange={handleSelectingImage} />
             </div>
+            {/* </FormControl> */}
 
             <div className="input_row">
                 <Button onClick={createProduct} variant="contained">
@@ -267,9 +292,19 @@ const Admin = () => {
                 </Button>
             </div>
 
-            {products.map((product) => (
+            {isLoaded ? (
+                <div>
+                    {products.map((product) => (
+                        <AdminProduct key={product.product_number} handleDelete={handleDelete} product={product} />
+                    ))}
+                </div>
+            ) : (
+                <CircularProgress />
+            )}
+
+            {/* {products.map((product) => (
                 <AdminProduct handleDelete={handleDelete} product={product} />
-            ))}
+            ))} */}
             <AmplifySignOut />
         </div>
     );

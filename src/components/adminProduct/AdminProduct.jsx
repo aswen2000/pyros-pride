@@ -15,6 +15,10 @@ import {
     OutlinedInput,
     Box,
     Chip,
+    InputLabel,
+    FormControl,
+    ListItemText,
+    Checkbox,
 } from "@mui/material";
 import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -67,10 +71,10 @@ const AdminProduct = ({ handleDelete, product }) => {
         setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
 
-    async function handleSave(event){
+    async function handleSave(event) {
         // await API.graphql({ query: UpdateTag, variables: { input: { id } } });
         console.log("handling save");
-    };
+    }
 
     const tags = [
         "Oliver Hansen",
@@ -101,7 +105,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </div>
             </div>
 
-            <div>
+            <div className="row">
                 <div className="media_input_container">
                     <input
                         type="file"
@@ -126,7 +130,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </div>
             </div>
 
-            <Grid container alignItems="center" justifyContent="center">
+            <Grid container className="row" alignItems="center" justifyContent="center">
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <TextField
                         defaultValue={product_name}
@@ -153,7 +157,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </Grid>
             </Grid>
 
-            <div>
+            <div className="row">
                 <TextField
                     defaultValue={description}
                     label="Description"
@@ -167,7 +171,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                 />
             </div>
 
-            <Grid container>
+            <Grid className="row" container>
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <TextField
                         defaultValue={box_per_case}
@@ -226,29 +230,38 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </Grid>
             </Grid>
             <div>
-                <Select
-                    labelId="tag-select-label"
-                    id="tag-select"
-                    sx={{ width: 0.75 }}
-                    multiple
-                    value={selectedTags}
-                    onChange={handleChange}
-                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                    renderValue={(selected) => (
-                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                            {selected.map((value) => (
-                                <Chip key={value} label={value} />
-                            ))}
-                        </Box>
-                    )}
-                    MenuProps={MenuProps}
-                >
-                    {tags.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
-                            {name}
-                        </MenuItem>
-                    ))}
-                </Select>
+                <FormControl sx={{ width: 0.75 }}>
+                    <InputLabel id="tag-select-label">Tags</InputLabel>
+                    <Select
+                        labelId="tag-select-label"
+                        id="tag-select"
+                        sx={{ width: 1 }}
+                        multiple
+                        value={selectedTags}
+                        onChange={handleChange}
+                        label="Tags"
+                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                                {selected.map((value) => (
+                                    <Chip key={value} label={value} />
+                                ))}
+                            </Box>
+                        )}
+                        MenuProps={MenuProps}
+                    >
+                        {tags.map((name) => (
+                            <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                                <Checkbox
+                                    sx={{ m: 0, mr: 1, p: 0 }}
+                                    size="small"
+                                    checked={selectedTags.indexOf(name) > -1}
+                                />
+                                <ListItemText primary={name} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </div>
 
             <Button onClick={() => handleDelete(id)}>delete btn</Button>

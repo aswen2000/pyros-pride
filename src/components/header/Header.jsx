@@ -11,12 +11,12 @@ const Header = () => {
     return (
         <div className="outer_wrapper">
             <Grid container>
-                <Grid xs={12} sm={12} md={12} lg={5} xl={5} className="logo_grid">
+                <Grid item xs={12} sm={12} md={12} lg={5} xl={5} className="logo_grid">
                     <Link to="/" replace>
                         <img className="header_logo" src={flashingThunderLogo} alt="Flashing Thunder Logo" />
                     </Link>
                 </Grid>
-                <Grid xs={12} sm={12} md={12} lg={7} xl={7} className="link_grid">
+                <Grid item xs={12} sm={12} md={12} lg={7} xl={7} className="link_grid">
                     <Link to="/" className="navbar_item" replace>
                         Home
                     </Link>

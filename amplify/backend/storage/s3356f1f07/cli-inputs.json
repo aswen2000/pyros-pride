@@ -1,0 +1,16 @@
+{
+  "resourceName": "s3356f1f07",
+  "policyUUID": "356f1f07",
+  "bucketName": "pyrosprideceb84f60e40741489376cb68d865b421",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

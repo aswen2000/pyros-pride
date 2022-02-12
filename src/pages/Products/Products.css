@@ -5,4 +5,15 @@
 .image_list {
     margin-left: auto;
     margin-right: auto;
+    max-width: 70%;
+}
+
+.image_list_item {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image_list_product {
+    margin-left: auto;
+    margin-right: auto;
 }
