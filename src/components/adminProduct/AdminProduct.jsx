@@ -68,7 +68,7 @@ const AdminProduct = ({ handleDelete, product }) => {
     useEffect(() => {
         delete product.updatedAt;
         delete product.createdAt;
-        // setProductData({ ...productData, image: product.image.split("?")[0].split("/")[4]});
+        setProductData({ ...productData, image: product.image.split("?")[0].split("/")[4]});
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -90,6 +90,8 @@ const AdminProduct = ({ handleDelete, product }) => {
 
         try {
             await API.graphql({ query: updateProductMutation, variables: { input: productData } });
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -115,7 +117,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                     <CardMedia
                         sx={{ maxHeight: "auto", maxWidth: 360 }}
                         component="img"
-                        image={productData.image}
+                        image={image}
                         alt="display img"
                     />
                 </div>
@@ -284,9 +286,9 @@ const AdminProduct = ({ handleDelete, product }) => {
                 </FormControl>
             </div>
 
-            <Button onClick={() => handleDelete(id)}>delete btn</Button>
-            <Button onClick={handleCancel}>cancel</Button>
-            <Button onClick={() => handleSave()}>save</Button>
+            <Button onClick={() => handleDelete(id)}>Delete</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={() => handleSave()}>Save</Button>
         </Card>
     ) : (
         <Card className="card" sx={{ width: 0.4 }}>
