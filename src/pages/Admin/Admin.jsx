@@ -11,6 +11,7 @@ import {
     Select,
     OutlinedInput,
     MenuItem,
+    Grid,
     Box,
     Checkbox,
     ListItemText,
@@ -155,41 +156,48 @@ const Admin = () => {
                     value={formData.product_number}
                 />
             </div>
-
             <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="box_per_case"
-                    label="Boxes Per Case"
-                    variant="outlined"
-                    // sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, box_per_case: e.target.value })}
-                    value={formData.box_per_case}
-                />
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_per_box"
-                    label="Product Per Box"
-                    variant="outlined"
-                    // sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
-                    value={formData.product_per_box}
-                />
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="pieces_per_product"
-                    label="Pieces Per Product"
-                    variant="outlined"
-                    // sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, pieces_per_product: e.target.value })}
-                    value={formData.pieces_per_product}
-                />
+                <Grid container columns={24} alignItems="center" justifyContent="center">
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="box_per_case"
+                            label="Boxes Per Case"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, box_per_case: e.target.value })}
+                            value={formData.box_per_case}
+                        />
+                    </Grid>
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="product_per_box"
+                            label="Product Per Box"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
+                            value={formData.product_per_box}
+                        />
+                    </Grid>
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="pieces_per_product"
+                            label="Pieces Per Product"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, pieces_per_product: e.target.value })}
+                            value={formData.pieces_per_product}
+                        />
+                    </Grid>
+                </Grid>
             </div>
 
             <div className="input_row">
