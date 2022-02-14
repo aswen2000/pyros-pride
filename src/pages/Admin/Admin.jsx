@@ -218,8 +218,6 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                {/* <FormControl fullWidth> */}
-                {/* <InputLabel id="creation-tag-select-label">Tags</InputLabel> */}
                 <Select
                     labelId="creation-tag-select-label"
                     id="creation-tag-select"
@@ -251,7 +249,6 @@ const Admin = () => {
                         </MenuItem>
                     ))}
                 </Select>
-                {/* </FormControl> */}
             </div>
 
             <div className="input_row">
@@ -285,7 +282,6 @@ const Admin = () => {
             <div className="input_row">
                 <input type="file" className="file_input" onChange={handleSelectingImage} />
             </div>
-            {/* </FormControl> */}
 
             <div className="input_row">
                 <Button onClick={createProduct} variant="contained">

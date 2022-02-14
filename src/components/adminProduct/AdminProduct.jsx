@@ -188,7 +188,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Boxes Per Case"
                         id="box_per_case"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, box_per_case: e.target.value })}
@@ -201,7 +201,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Product Per Box"
                         id="product_per_box"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, product_per_box: e.target.value })}
@@ -214,7 +214,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Pieces Per Box"
                         id="pieces_per_product"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, pieces_per_product: e.target.value })}
