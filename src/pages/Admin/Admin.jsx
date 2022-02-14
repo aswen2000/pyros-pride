@@ -131,31 +131,35 @@ const Admin = () => {
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
-            <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_name_input"
-                    label="Product Name"
-                    variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
-                    value={formData.product_name}
-                />
+            <Grid container columns={24} alignItems="center" justifyContent="center">
+                <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={4} xl={4}>
+                    <TextField
+                        className={classes.root}
+                        InputProps={textFieldStyles}
+                        InputLabelProps={textFieldStyles}
+                        id="product_name_input"
+                        label="Product Name"
+                        variant="outlined"
+                        sx={{ marginRight: 1, marginLeft: 1 }}
+                        onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
+                        value={formData.product_name}
+                    />
+                </Grid>
+                <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={4} xl={4}>
+                    <TextField
+                        className={classes.root}
+                        InputProps={textFieldStyles}
+                        InputLabelProps={textFieldStyles}
+                        id="product_number_input"
+                        label="Product Number"
+                        variant="outlined"
+                        sx={{ marginRight: 1, marginLeft: 1 }}
+                        onChange={(e) => setFormData({ ...formData, product_number: e.target.value })}
+                        value={formData.product_number}
+                    />
+                </Grid>
+            </Grid>
 
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_number_input"
-                    label="Product Number"
-                    variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_number: e.target.value })}
-                    value={formData.product_number}
-                />
-            </div>
             <div className="input_row">
                 <Grid container columns={24} alignItems="center" justifyContent="center">
                     <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
@@ -306,10 +310,6 @@ const Admin = () => {
             ) : (
                 <CircularProgress />
             )}
-
-            {/* {products.map((product) => (
-                <AdminProduct handleDelete={handleDelete} product={product} />
-            ))} */}
             <AmplifySignOut />
         </div>
     );
