@@ -32,6 +32,7 @@ import {
     MenuProps,
     textFieldStyles,
 } from "./adminStylingUtils";
+import tagOptions from "../../utils";
 
 const initialFormState = {
     product_number: "",
@@ -56,7 +57,7 @@ const Admin = () => {
     const [formData, setFormData] = useState(initialFormState);
 
     // TODO: Delete and replace with call to DB
-    const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
+    // const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
 
     useEffect(() => {
         fetchProducts();
@@ -239,14 +240,14 @@ const Admin = () => {
                     )}
                     MenuProps={MenuProps}
                 >
-                    {tags.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                    {tagOptions.map((option) => (
+                        <MenuItem key={option} value={option} style={getStyles(option, formData.tags, theme)}>
                             <Checkbox
                                 sx={{ m: 0, mr: 1, p: 0 }}
                                 size="small"
-                                checked={formData.tags.indexOf(name) > -1}
+                                checked={formData.tags.indexOf(option) > -1}
                             />
-                            <ListItemText primary={name} />
+                            <ListItemText primary={option} />
                         </MenuItem>
                     ))}
                 </Select>

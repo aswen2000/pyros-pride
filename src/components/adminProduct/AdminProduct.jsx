@@ -35,6 +35,7 @@ import {
 } from "./adminProductUtils";
 import "./AdminProduct.css";
 import { updateProduct as updateProductMutation } from "../../graphql/mutations";
+import tagOptions from "../../utils";
 
 const AdminProduct = ({ handleDelete, product }) => {
     const {
@@ -96,19 +97,6 @@ const AdminProduct = ({ handleDelete, product }) => {
             console.log(error);
         }
     }
-
-    const tagsOptions = [
-        "Oliver Hansen",
-        "Van Henry",
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Miriam Wagner",
-        "Bradley Wilkerson",
-        "Virginia Andrews",
-        "Kelly Snyder",
-    ];
 
     return editMode ? (
         <Card className="card" sx={{ width: 0.5 }}>
@@ -272,7 +260,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         )}
                         MenuProps={MenuProps}
                     >
-                        {tagsOptions.map((option) => (
+                        {tagOptions.map((option) => (
                             <MenuItem key={option} value={option} style={getStyles(option, selectedTags, theme)}>
                                 <Checkbox
                                     sx={{ m: 0, mr: 1, p: 0 }}
