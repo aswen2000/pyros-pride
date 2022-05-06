@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
-import { ImageList, ImageListItem, CircularProgress } from "@mui/material";
+import { ImageList, ImageListItem, CircularProgress, Grid } from "@mui/material";
 import Product from "../../components/product/Product";
 import ImageGallery from "./ProductsUtils";
 import "./Products.css";
@@ -33,12 +33,16 @@ const Products = () => {
     }
 
     return (
-        <div>
-            {isLoaded ? <ImageGallery imageData={products} /> : <CircularProgress />}
-
-            {/* <ImageList className="image_list" sx={{ width: 0.65 }} variant="masonry" cols={2} gap={8}>
-                {products.map((item) => (
-                    <ImageListItem key={item.img}>
+        <div className="productsDiv">
+            {isLoaded ? (
+                <Grid
+                    className="productsContainer"
+                    container
+                    /* direction="column" */
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    {products.map((item) => (
                         <Product
                             product_name={item.product_name}
                             product_number={item.product_number}
@@ -46,9 +50,11 @@ const Products = () => {
                             image={item.image}
                             link={item.link}
                         />
-                    </ImageListItem>
-                ))}
-            </ImageList> */}
+                    ))}
+                </Grid>
+            ) : (
+                <CircularProgress />
+            )}
         </div>
     );
 };

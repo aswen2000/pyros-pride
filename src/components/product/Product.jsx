@@ -11,11 +11,11 @@ import {
     Accordion,
     AccordionSummary,
     AccordionDetails,
-    TextField,
+    Grid,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import styles from "./Product.css";
+import "./Product.css";
 
 const Product = ({
     id,
@@ -39,27 +39,29 @@ const Product = ({
     `);
 
     return (
-        <Card sx={{ maxWidth: 475 }}>
-            <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+        <Grid item xs={12} md={6}>
+            <Card sx={{ ml: 2, mr: 2 }}>
+                <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
 
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMore />}>
-                    <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
-                        <Typography variant="h5" component="div">
-                            {product_name}
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMore />}>
+                        <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
+                            <Typography variant="h5" component="div">
+                                {product_name}
+                            </Typography>
+                            <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
+                                {product_number}
+                            </Typography>
+                        </CardContentNoPadding>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography variant="body2" color="text.secondary">
+                            {description}
                         </Typography>
-                        <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
-                            {product_number}
-                        </Typography>
-                    </CardContentNoPadding>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body2" color="text.secondary">
-                        {description}
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-        </Card>
+                    </AccordionDetails>
+                </Accordion>
+            </Card>
+        </Grid>
     );
 };
 

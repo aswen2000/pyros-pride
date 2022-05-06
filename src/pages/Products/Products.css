@@ -17,3 +17,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.productsContainer {
+    width: 80% !important;
+    margin: auto;
+}
+
+.productsDiv {
+    text-align: center;
+}
