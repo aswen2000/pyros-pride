@@ -40,8 +40,8 @@ const Product = ({
 
     return (
         <Grid item xs={12} md={6}>
-            <Card sx={{ ml: 2, mr: 2 }}>
-                <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+            <Card sx={{ m: 3, width: 0.9 }}>
+                <CardMedia /* sx={{ maxHeight: 400, maxWidth: "auto" }} */ component="img" image={image} alt="display img" />
 
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMore />}>
