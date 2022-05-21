@@ -3,7 +3,7 @@ import "./App.css";
 import { API, Storage } from "aws-amplify";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { listProducts as ListProducts } from "./graphql/queries";
-import { Home, About, Contact, Locations, Products, ThunderWear, Admin } from "./pages/index";
+import { Home, About, Contact, Locations, Products, ProductDetails, ThunderWear, Admin } from "./pages/index";
 import { Header, Footer } from "./components/index";
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
                     <Route path="/about" component={About} />
                     <Route path="/contact" component={Contact} />
                     <Route path="/locations" component={Locations} />
+                    <Route exact path="/products/:id" component={ProductDetails} />
                     <Route path="/products" component={Products} />
                     <Route path="/thunderwear" component={ThunderWear} />
                     <Route path="/admin" component={Admin} />
