@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
+import ReactPlayer from "react-player/youtube";
 import { API, Storage } from "aws-amplify";
 import { useLocation } from "react-router-dom";
 import { listProducts } from "../../graphql/queries";
-// import "./home.css";
-// import facebookLogo from '../../images/f_logo_RGB-Blue_58.png'
-// import flashingThunderLogo from '../../images/long-logo.png'
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
     const location = useLocation();
 
     const [selectedProduct, setSelectedProduct] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-
-    // console.log("before fetch");
-    // fetchProduct();
-    // console.log("after fetch");
 
     useEffect(() => {
         fetchProduct();
@@ -42,7 +37,11 @@ const ProductDetails = () => {
         setIsLoaded(true);
     }
 
-    return <div className="home">This is ProductDetails</div>;
+    return (
+        <div className="playerWrapper">
+            <ReactPlayer url="https://www.youtube.com/watch?v=lk0-yDyLqSE" width="100%" height="100%" />
+        </div>
+    );
 };
 
 export default ProductDetails;

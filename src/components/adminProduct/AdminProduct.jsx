@@ -101,6 +101,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                     />
                 </div>
                 <div className="media_container">
+                    {/* TODO: replace with ReactPlayer */}
                     <YouTube videoId={video_link} opts={videoSizeOpts} />
                 </div>
             </div>
