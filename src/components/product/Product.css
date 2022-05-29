@@ -2,3 +2,7 @@
     display: inline-block;
     height: auto;
 }
+
+.productDetailsLink {
+    width: fit-content;
+}

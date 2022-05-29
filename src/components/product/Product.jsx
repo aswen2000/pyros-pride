@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 import React from "react";
 import YouTube from "react-youtube";
+import { Link } from "react-router-dom";
 import {
     Card,
     CardContent,
@@ -39,27 +40,25 @@ const Product = ({
     `);
 
     return (
-        <Card sx={{ maxWidth: 475 }}>
-            <CardMedia sx={{ maxHeight: 400, maxWidth: "auto" }} component="img" image={image} alt="display img" />
+        <Link to={`/products/${product_name}`} className="productDetailsLink">
+            <Card sx={{ width: "100%" }}>
+                <CardMedia
+                    sx={{ maxHeight: "25vh", width: "auto", maxWidth: "auto" }}
+                    component="img"
+                    image={image}
+                    alt="display img"
+                />
 
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMore />}>
-                    <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
-                        <Typography variant="h5" component="div">
-                            {product_name}
-                        </Typography>
-                        <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
-                            {product_number}
-                        </Typography>
-                    </CardContentNoPadding>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body2" color="text.secondary">
-                        {description}
+                <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
+                    <Typography variant="h5" component="div">
+                        {product_name}
                     </Typography>
-                </AccordionDetails>
-            </Accordion>
-        </Card>
+                    <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
+                        {product_number}
+                    </Typography>
+                </CardContentNoPadding>
+            </Card>
+        </Link>
     );
 };
 
