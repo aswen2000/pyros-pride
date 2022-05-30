@@ -1,5 +1,10 @@
-.playerWrapper {
-    aspect-ratio: 16 / 9;
+.videoPlayer {
     max-width: 50%;
-    justify-content: center;
+    aspect-ratio: 16 / 9;
+}
+
+.productName {
+    width: 50%;
+    color: #e5e5e5;
+    text-align: left;
 }

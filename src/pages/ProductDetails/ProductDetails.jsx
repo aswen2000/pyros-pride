@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Grid, Typography } from "@mui/material";
 import ReactPlayer from "react-player/youtube";
 import { API, Storage } from "aws-amplify";
 import { useLocation } from "react-router-dom";
@@ -38,9 +39,20 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="playerWrapper">
-            <ReactPlayer url="https://www.youtube.com/watch?v=lk0-yDyLqSE" width="100%" height="100%" />
-        </div>
+        <Grid container justifyContent="center">
+            <Typography className="productName" variant="h4" gutterBottom>
+                {selectedProduct.product_name}
+            </Typography>
+            <Grid item container xs={12} justifyContent="center">
+                <ReactPlayer
+                    className="videoPlayer"
+                    url="https://www.youtube.com/watch?v=lk0-yDyLqSE"
+                    controls="true"
+                    width="100%"
+                    height="100%"
+                />
+            </Grid>
+        </Grid>
     );
 };
 
