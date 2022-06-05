@@ -1,5 +1,6 @@
 .productDetailsLink {
-    width: 50%;
+    width: 25vw;
+    min-width: 300px;
 }
 
 .card {

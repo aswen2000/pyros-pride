@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
-import { ImageList, ImageListItem, CircularProgress, Grid } from "@mui/material";
-import Product from "../../components/product/Product";
+import { CircularProgress, Grid } from "@mui/material";
+import { Product, ProductFilter } from "../../components/index";
 import ImageGallery from "./ProductsUtils";
 import "./Products.css";
 import { listProducts } from "../../graphql/queries";
-import { AdminProduct } from "../../components";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -34,17 +33,22 @@ const Products = () => {
 
     return (
         <Grid container>
-            {products.map((item, index) => (
-                <Grid item container xs={6} justifyContent="center">
-                    <Product
-                        product_name={item.product_name}
-                        product_number={item.product_number}
-                        description={item.description}
-                        image={item.image}
-                        link={item.link}
-                    />
-                </Grid>
-            ))}
+            <Grid xs={12} md={2}>
+                <ProductFilter />
+            </Grid>
+            <Grid container item xs={12} md={10}>
+                {products.map((item, index) => (
+                    <Grid item container xs={12} md={6} justifyContent="center">
+                        <Product
+                            product_name={item.product_name}
+                            product_number={item.product_number}
+                            description={item.description}
+                            image={item.image}
+                            link={item.link}
+                        />
+                    </Grid>
+                ))}
+            </Grid>
         </Grid>
     );
 };
