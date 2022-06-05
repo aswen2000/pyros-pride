@@ -1,8 +1,13 @@
-.yt {
-    display: inline-block;
-    height: auto;
-}
-
 .productDetailsLink {
     width: 50%;
+}
+
+.card {
+    background-color: #222 !important;
+    text-align: center;
+}
+
+.cardContent {
+    background-color: #333 !important;
+    text-align: center;
 }

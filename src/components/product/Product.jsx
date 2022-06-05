@@ -2,20 +2,9 @@
 /* eslint-disable camelcase */
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-    Card,
-    CardContent,
-    CardMedia,
-    Button,
-    Typography,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    TextField,
-} from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import styles from "./Product.css";
+import "./Product.css";
 
 const Product = ({
     id,
@@ -40,7 +29,7 @@ const Product = ({
 
     return (
         <Link to={`/products/${product_name}`} className="productDetailsLink">
-            <Card sx={{ width: "100%" }}>
+            <Card sx={{ width: "100%" }} className="card">
                 <CardMedia
                     sx={{ maxHeight: "30vh", width: "auto", maxWidth: "auto", margin: "auto" }}
                     component="img"
@@ -48,11 +37,11 @@ const Product = ({
                     alt="display img"
                 />
 
-                <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="card_content">
+                <CardContentNoPadding sx={{ pb: 0, pt: 0 }} className="cardContent">
                     <Typography variant="h5" component="div">
                         {product_name}
                     </Typography>
-                    <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1 }}>
+                    <Typography gutterBottom variant="h7" component="div" sx={{ mt: 1, mb: 0, pb: 1 }}>
                         {product_number}
                     </Typography>
                 </CardContentNoPadding>
