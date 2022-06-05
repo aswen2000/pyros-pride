@@ -18,7 +18,6 @@ import {
     CircularProgress,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { FormControlLabel, FormControl, InputLabel } from "@material-ui/core";
 import { listProducts as ListProducts } from "../../graphql/queries";
 import {
     createProduct as CreateProductMutation,
@@ -36,17 +35,17 @@ import {
 import tagOptions from "../../utils";
 
 const initialFormState = {
-    product_number: "",
-    product_name: "",
+    product_number: null,
+    product_name: null,
     box_per_case: null,
     product_per_box: null,
     pieces_per_product: null,
-    category: "",
-    available: false,
+    category: null,
+    available: null,
     tags: [],
-    description: "",
-    image: "",
-    video_link: "",
+    description: null,
+    image: null,
+    video_link: null,
 };
 
 const Admin = () => {

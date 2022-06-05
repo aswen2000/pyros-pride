@@ -42,7 +42,7 @@ const Product = ({
         <Link to={`/products/${product_name}`} className="productDetailsLink">
             <Card sx={{ width: "100%" }}>
                 <CardMedia
-                    sx={{ maxHeight: "25vh", width: "auto", maxWidth: "auto" }}
+                    sx={{ maxHeight: "30vh", width: "auto", maxWidth: "auto", margin: "auto" }}
                     component="img"
                     image={image}
                     alt="display img"
