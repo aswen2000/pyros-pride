@@ -11,6 +11,7 @@ import {
     Select,
     OutlinedInput,
     MenuItem,
+    Grid,
     Box,
     Checkbox,
     ListItemText,
@@ -32,6 +33,7 @@ import {
     MenuProps,
     textFieldStyles,
 } from "./adminStylingUtils";
+import tagOptions from "../../utils";
 
 const initialFormState = {
     product_number: "",
@@ -56,7 +58,7 @@ const Admin = () => {
     const [formData, setFormData] = useState(initialFormState);
 
     // TODO: Delete and replace with call to DB
-    const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
+    // const tags = ["New", "Old", "Sale", "Clearance", "Patriotic"];
 
     useEffect(() => {
         fetchProducts();
@@ -89,7 +91,7 @@ const Admin = () => {
                 return product;
             })
         );
-        console.log(apiData.data.listProducts.items);
+        // console.log(apiData.data.listProducts.items);
         setProducts(apiData.data.listProducts.items);
         setIsLoaded(true);
     }
@@ -129,66 +131,77 @@ const Admin = () => {
     return (
         <div className="App">
             <h1 className="add_product_header">Add Product</h1>
-            <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_name_input"
-                    label="Product Name"
-                    variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
-                    value={formData.product_name}
-                />
+            <Grid container columns={24} alignItems="center" justifyContent="center">
+                <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={4} xl={4}>
+                    <TextField
+                        className={classes.root}
+                        InputProps={textFieldStyles}
+                        InputLabelProps={textFieldStyles}
+                        id="product_name_input"
+                        label="Product Name"
+                        variant="outlined"
+                        sx={{ marginRight: 1, marginLeft: 1 }}
+                        onChange={(e) => setFormData({ ...formData, product_name: e.target.value })}
+                        value={formData.product_name}
+                    />
+                </Grid>
+                <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={4} xl={4}>
+                    <TextField
+                        className={classes.root}
+                        InputProps={textFieldStyles}
+                        InputLabelProps={textFieldStyles}
+                        id="product_number_input"
+                        label="Product Number"
+                        variant="outlined"
+                        sx={{ marginRight: 1, marginLeft: 1 }}
+                        onChange={(e) => setFormData({ ...formData, product_number: e.target.value })}
+                        value={formData.product_number}
+                    />
+                </Grid>
+            </Grid>
 
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_number_input"
-                    label="Product Number"
-                    variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_number: e.target.value })}
-                    value={formData.product_number}
-                />
-            </div>
-
             <div className="input_row">
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="box_per_case"
-                    label="Boxes Per Case"
-                    variant="outlined"
-                    sx={{ marginRight: 1 }}
-                    onChange={(e) => setFormData({ ...formData, box_per_case: e.target.value })}
-                    value={formData.box_per_case}
-                />
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="product_per_box"
-                    label="Product Per Box"
-                    variant="outlined"
-                    sx={{ marginRight: 1, marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
-                    value={formData.product_per_box}
-                />
-                <TextField
-                    className={classes.root}
-                    InputProps={textFieldStyles}
-                    InputLabelProps={textFieldStyles}
-                    id="pieces_per_product"
-                    label="Pieces Per Product"
-                    variant="outlined"
-                    sx={{ marginLeft: 1 }}
-                    onChange={(e) => setFormData({ ...formData, pieces_per_product: e.target.value })}
-                    value={formData.pieces_per_product}
-                />
+                <Grid container columns={24} alignItems="center" justifyContent="center">
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="box_per_case"
+                            label="Boxes Per Case"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, box_per_case: e.target.value })}
+                            value={formData.box_per_case}
+                        />
+                    </Grid>
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="product_per_box"
+                            label="Product Per Box"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, product_per_box: e.target.value })}
+                            value={formData.product_per_box}
+                        />
+                    </Grid>
+                    <Grid item sx={{ mb: 1, mt: 1, ml: 1, mr: 1 }} xs={24} sm={24} md={24} lg={7} xl={7}>
+                        <TextField
+                            className={classes.root}
+                            InputProps={textFieldStyles}
+                            InputLabelProps={textFieldStyles}
+                            id="pieces_per_product"
+                            label="Pieces Per Product"
+                            variant="outlined"
+                            fullWidth
+                            onChange={(e) => setFormData({ ...formData, pieces_per_product: e.target.value })}
+                            value={formData.pieces_per_product}
+                        />
+                    </Grid>
+                </Grid>
             </div>
 
             <div className="input_row">
@@ -217,8 +230,6 @@ const Admin = () => {
             </div>
 
             <div className="input_row">
-                {/* <FormControl fullWidth> */}
-                {/* <InputLabel id="creation-tag-select-label">Tags</InputLabel> */}
                 <Select
                     labelId="creation-tag-select-label"
                     id="creation-tag-select"
@@ -239,18 +250,17 @@ const Admin = () => {
                     )}
                     MenuProps={MenuProps}
                 >
-                    {tags.map((name) => (
-                        <MenuItem key={name} value={name} style={getStyles(name, formData.tags, theme)}>
+                    {tagOptions.map((option) => (
+                        <MenuItem key={option} value={option} style={getStyles(option, formData.tags, theme)}>
                             <Checkbox
                                 sx={{ m: 0, mr: 1, p: 0 }}
                                 size="small"
-                                checked={formData.tags.indexOf(name) > -1}
+                                checked={formData.tags.indexOf(option) > -1}
                             />
-                            <ListItemText primary={name} />
+                            <ListItemText primary={option} />
                         </MenuItem>
                     ))}
                 </Select>
-                {/* </FormControl> */}
             </div>
 
             <div className="input_row">
@@ -284,7 +294,6 @@ const Admin = () => {
             <div className="input_row">
                 <input type="file" className="file_input" onChange={handleSelectingImage} />
             </div>
-            {/* </FormControl> */}
 
             <div className="input_row">
                 <Button onClick={createProduct} variant="contained">
@@ -301,10 +310,6 @@ const Admin = () => {
             ) : (
                 <CircularProgress />
             )}
-
-            {/* {products.map((product) => (
-                <AdminProduct handleDelete={handleDelete} product={product} />
-            ))} */}
             <AmplifySignOut />
         </div>
     );
