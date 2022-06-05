@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
+import React, { useState } from "react";
 import {
     Card,
     CardMedia,
@@ -22,9 +23,9 @@ import {
 } from "@mui/material";
 import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
-import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { API } from "aws-amplify";
+import { updateProduct } from "../../graphql/mutations";
 import {
     videoSizeOpts,
     MenuProps,
@@ -71,9 +72,9 @@ const AdminProduct = ({ handleDelete, product }) => {
         setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
 
-    async function handleSave(event) {
-        // await API.graphql({ query: UpdateTag, variables: { input: { id } } });
+    async function handleSave() {
         console.log("handling save");
+        await API.graphql({ query: updateProduct, variables: { input: { id } } });
     }
 
     const tags = [

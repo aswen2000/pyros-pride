@@ -94,6 +94,7 @@ const Admin = () => {
         setIsLoaded(true);
     }
 
+    // TODO: ensure that empty fields are sent in as null
     async function createProduct() {
         if (!formData.product_name || !formData.product_number) {
             console.log(formData);

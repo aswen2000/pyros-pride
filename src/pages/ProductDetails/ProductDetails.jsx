@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, CircularProgress } from "@mui/material";
 import ReactPlayer from "react-player/youtube";
 import { API, Storage } from "aws-amplify";
 import { useLocation } from "react-router-dom";
@@ -39,20 +39,31 @@ const ProductDetails = () => {
     }
 
     return (
-        <Grid container justifyContent="center">
-            <Typography className="productName" variant="h4" gutterBottom>
-                {selectedProduct.product_name}
-            </Typography>
-            <Grid item container xs={12} justifyContent="center">
-                <ReactPlayer
-                    className="videoPlayer"
-                    url="https://www.youtube.com/watch?v=lk0-yDyLqSE"
-                    controls="true"
-                    width="100%"
-                    height="100%"
-                />
-            </Grid>
-        </Grid>
+        <>
+            {isLoaded ? (
+                <Grid container justifyContent="center">
+                    <Typography className="productName" variant="h4" gutterBottom>
+                        {selectedProduct.product_name}
+                    </Typography>
+                    <Grid item container xs={12} justifyContent="center">
+                        <ReactPlayer
+                            className="videoPlayer"
+                            url="https://www.youtube.com/watch?v=lk0-yDyLqSE"
+                            controls="true"
+                            width="100%"
+                            height="100%"
+                        />
+                    </Grid>
+                    <Grid item container xs={12} justifyContent="center">
+                        <Typography className="productDescription" sx={{ mt: 2 }} variant="body1" gutterBottom>
+                            {selectedProduct.description}
+                        </Typography>
+                    </Grid>
+                </Grid>
+            ) : (
+                <CircularProgress />
+            )}
+        </>
     );
 };
 
