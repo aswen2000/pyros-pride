@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Card,
     CardMedia,
@@ -25,7 +25,6 @@ import { ExpandMore, Edit } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import YouTube from "react-youtube";
 import { API } from "aws-amplify";
-import { updateProduct } from "../../graphql/mutations";
 import {
     videoSizeOpts,
     MenuProps,
@@ -35,6 +34,8 @@ import {
     CustomColorCheckbox,
 } from "./adminProductUtils";
 import "./AdminProduct.css";
+import { updateProduct as updateProductMutation } from "../../graphql/mutations";
+import tagOptions from "../../utils";
 
 const AdminProduct = ({ handleDelete, product }) => {
     const {
@@ -44,9 +45,9 @@ const AdminProduct = ({ handleDelete, product }) => {
         box_per_case,
         product_per_box,
         pieces_per_product,
-        // category,
+        category,
         available,
-        // tags,
+        tags,
         description,
         image,
         video_link,
@@ -65,6 +66,13 @@ const AdminProduct = ({ handleDelete, product }) => {
         setSelectedTags([]);
     };
 
+    useEffect(() => {
+        delete product.updatedAt;
+        delete product.createdAt;
+        setProductData({ ...productData, image: product.image.split("?")[0].split("/")[4]});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleChange = (event) => {
         const {
             target: { value },
@@ -72,23 +80,24 @@ const AdminProduct = ({ handleDelete, product }) => {
         setSelectedTags(typeof value === "string" ? value.split(",") : value);
     };
 
-    async function handleSave() {
-        console.log("handling save");
-        await API.graphql({ query: updateProduct, variables: { input: { id } } });
-    }
+    async function handleSave(event) {
+        console.log(event);
+        console.log(productData);
 
-    const tags = [
-        "Oliver Hansen",
-        "Van Henry",
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Miriam Wagner",
-        "Bradley Wilkerson",
-        "Virginia Andrews",
-        "Kelly Snyder",
-    ];
+        if (!productData.product_name || !productData.product_number) {
+            console.log("name/number is null");
+            return;
+        }
+
+        // TODO: Ensure empty data is sent in as null
+        try {
+            await API.graphql({ query: updateProductMutation, variables: { input: productData } });
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return editMode ? (
         <Card className="card" sx={{ width: 0.5 }}>
@@ -97,7 +106,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                     <CardMedia
                         sx={{ maxHeight: "auto", maxWidth: 360 }}
                         component="img"
-                        image={productData.image}
+                        image={image}
                         alt="display img"
                     />
                 </div>
@@ -113,9 +122,10 @@ const AdminProduct = ({ handleDelete, product }) => {
                         type="file"
                         accept="image/*"
                         className="edit_file_input"
-                        onChange={(e) =>
-                            setProductData({ ...productData, image: URL.createObjectURL(e.target.files[0]) })
-                        }
+                        onChange={(e) => {
+                            setProductData({ ...productData, image: e.target.files[0].name });
+                            console.log(e.target.files[0].name);
+                        }}
                     />
                 </div>
                 <div className="media_input_container">
@@ -180,7 +190,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Boxes Per Case"
                         id="box_per_case"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, box_per_case: e.target.value })}
@@ -193,7 +203,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Product Per Box"
                         id="product_per_box"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, product_per_box: e.target.value })}
@@ -206,7 +216,7 @@ const AdminProduct = ({ handleDelete, product }) => {
                         label="Pieces Per Box"
                         id="pieces_per_product"
                         variant="outlined"
-                        sx={{ mb: 1, mt: 1, width: 0.75 }}
+                        sx={{ mb: 1, mt: 1, width: 0.85 }}
                         size="small"
                         multiline
                         onChange={(e) => setProductData({ ...productData, pieces_per_product: e.target.value })}
@@ -252,23 +262,23 @@ const AdminProduct = ({ handleDelete, product }) => {
                         )}
                         MenuProps={MenuProps}
                     >
-                        {tags.map((name) => (
-                            <MenuItem key={name} value={name} style={getStyles(name, selectedTags, theme)}>
+                        {tagOptions.map((option) => (
+                            <MenuItem key={option} value={option} style={getStyles(option, selectedTags, theme)}>
                                 <Checkbox
                                     sx={{ m: 0, mr: 1, p: 0 }}
                                     size="small"
-                                    checked={selectedTags.indexOf(name) > -1}
+                                    checked={selectedTags.indexOf(option) > -1}
                                 />
-                                <ListItemText primary={name} />
+                                <ListItemText primary={option} />
                             </MenuItem>
                         ))}
                     </Select>
                 </FormControl>
             </div>
 
-            <Button onClick={() => handleDelete(id)}>delete btn</Button>
-            <Button onClick={handleCancel}>cancel</Button>
-            <Button onClick={() => handleSave()}>save</Button>
+            <Button onClick={() => handleDelete(id)}>Delete</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={() => handleSave()}>Save</Button>
         </Card>
     ) : (
         <Card className="card" sx={{ width: 0.4 }}>
