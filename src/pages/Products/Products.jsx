@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
 import { CircularProgress, Grid } from "@mui/material";
-import { Product, ProductFilter } from "../../components/index";
+import { Product, ProductFilter, ProductCard } from "../../components/index";
 import ImageGallery from "./ProductsUtils";
 import "./Products.css";
 import { listProducts } from "../../graphql/queries";
@@ -39,7 +39,7 @@ const Products = () => {
             <Grid container item xs={12} md={10}>
                 {products.map((item, index) => (
                     <Grid item container xs={12} md={6} justifyContent="center">
-                        <Product
+                        <ProductCard
                             product_name={item.product_name}
                             product_number={item.product_number}
                             description={item.description}

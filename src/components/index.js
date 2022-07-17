@@ -5,5 +5,6 @@ import Product from "./product/Product";
 import Mailto from "./mailto/mailto";
 import AdminProduct from "./adminProduct/AdminProduct";
 import ProductFilter from "./productFilter/ProductFilter";
+import ProductCard from "./productCard/ProductCard";
 
-export { Header, Footer, Product, Mailto, AdminProduct, ProductFilter };
+export { Header, Footer, Product, Mailto, AdminProduct, ProductFilter, ProductCard };
